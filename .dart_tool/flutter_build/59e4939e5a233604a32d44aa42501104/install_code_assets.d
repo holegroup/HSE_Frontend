@@ -1,0 +1,1 @@
+ C:\\Users\\USER\\Downloads\\HSE\\hse_buddy_flutter-main\\.dart_tool\\flutter_build\\59e4939e5a233604a32d44aa42501104\\native_assets.json: 
