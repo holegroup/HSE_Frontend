@@ -23,7 +23,7 @@ class _RecurringTasksState extends State<RecurringTasks> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Recurring Tasks"),
+        title: const Text("Recurring Tasks"),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
@@ -32,7 +32,7 @@ class _RecurringTasksState extends State<RecurringTasks> {
         child: SafeArea(
           child: Obx(() {
             if (recurringTaskController.isloadingDetails.value) {
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             }
 
             if (recurringTaskController.recurringTasks.isEmpty) {
@@ -45,7 +45,7 @@ class _RecurringTasksState extends State<RecurringTasks> {
                       size: 64,
                       color: Colors.grey[400],
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
                       "No Recurring Tasks Found",
                       style: TextStyle(
@@ -54,7 +54,7 @@ class _RecurringTasksState extends State<RecurringTasks> {
                         color: Colors.grey[600],
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       "Create tasks with frequency to see them here",
                       style: TextStyle(
@@ -63,13 +63,13 @@ class _RecurringTasksState extends State<RecurringTasks> {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     ElevatedButton.icon(
                       onPressed: () {
                         recurringTaskController.getRecurringTask();
                       },
-                      icon: Icon(Icons.refresh),
-                      label: Text("Refresh"),
+                      icon: const Icon(Icons.refresh),
+                      label: const Text("Refresh"),
                     ),
                   ],
                 ),
@@ -83,7 +83,7 @@ class _RecurringTasksState extends State<RecurringTasks> {
                 return Stack(
                   children: [
                     Card(
-                      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+                      margin: const EdgeInsets.symmetric(vertical: 8, horizontal: 16),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
                         child: Column(
@@ -91,15 +91,15 @@ class _RecurringTasksState extends State<RecurringTasks> {
                           children: [
                             Text(
                               task.product,
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: const TextStyle(fontWeight: FontWeight.bold),
                             ),
                             Text("Part Number: ${task.partNumber}"),
                             Text("Inspector: ${task.inspectorName}"),
                             Text("Status: ${task.status}"),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             Text(
                               "Note: ${task.note}",
-                              style: TextStyle(fontStyle: FontStyle.italic),
+                              style: const TextStyle(fontStyle: FontStyle.italic),
                             ),
                             Text(
                                 "Maintenance Frequency: ${task.maintenanceFreq}"),
@@ -114,7 +114,7 @@ class _RecurringTasksState extends State<RecurringTasks> {
                                         recurringTaskController
                                             .deleteTask(task.id);
                                       },
-                                      child: Text("Delete Task")),
+                                      child: const Text("Delete Task")),
                                 ])
                           ],
                         ),
@@ -124,11 +124,11 @@ class _RecurringTasksState extends State<RecurringTasks> {
                         ? Positioned(
                             right: 0,
                             child: Container(
-                              margin: EdgeInsets.symmetric(
+                              margin: const EdgeInsets.symmetric(
                                   vertical: 8, horizontal: 16),
-                              padding: EdgeInsets.symmetric(
+                              padding: const EdgeInsets.symmetric(
                                   vertical: 4, horizontal: 16),
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: Colors.red,
                                 borderRadius: BorderRadius.only(
                                   topLeft: Radius.circular(0),
@@ -137,13 +137,13 @@ class _RecurringTasksState extends State<RecurringTasks> {
                                   bottomRight: Radius.circular(0),
                                 ),
                               ),
-                              child: Text(
+                              child: const Text(
                                 "Critical Task",
                                 style: TextStyle(color: Colors.white),
                               ),
                             ),
                           )
-                        : SizedBox(),
+                        : const SizedBox(),
                   ],
                 );
               },

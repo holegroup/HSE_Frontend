@@ -31,12 +31,12 @@ class CameraView extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Colors.white.withOpacity(0.5),
-          title: Text("Instructions"),
+          title: const Text("Instructions"),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 Text(
-                  this.note.toString(),
+                  note.toString(),
                 ),
               ],
             ),
@@ -106,26 +106,26 @@ class CameraView extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
+                                const Text(
                                   "  Latitude : ",
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 Text(
                                   '${locationController.latitude}  ',
-                                  style: TextStyle(color: Colors.white),
+                                  style: const TextStyle(color: Colors.white),
                                 ),
                               ],
                             ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Text(
+                                const Text(
                                   "  Longitude: ",
                                   style: TextStyle(color: Colors.white),
                                 ),
                                 Text(
                                   '${locationController.longitude}  ',
-                                  style: TextStyle(color: Colors.white),
+                                  style: const TextStyle(color: Colors.white),
                                 ),
                               ],
                             ),
@@ -172,7 +172,7 @@ class CameraView extends StatelessWidget {
                             onTap: () {
                               _showInstruction(context);
                             },
-                            child: Row(
+                            child: const Row(
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.end,
                               children: [
@@ -236,7 +236,7 @@ class CameraView extends StatelessWidget {
                   ),
                   const SizedBox(height: 20),
                   if (controller.capturedImages.isEmpty)
-                    Text(
+                    const Text(
                       "Capture images to see the preview",
                       style: TextStyle(color: Colors.grey),
                     ),
@@ -251,13 +251,13 @@ class CameraView extends StatelessWidget {
                             return GestureDetector(
                               onTap: () {
                                 Get.to(NewReport(
-                                  equipmentName: this.equipmentName.toString(),
-                                  partNumber: this.partNumber.toString(),
+                                  equipmentName: equipmentName.toString(),
+                                  partNumber: partNumber.toString(),
                                   latitude:
                                       locationController.latitude.toDouble(),
                                   longitude:
                                       locationController.longitude.toDouble(),
-                                  taskId: this.taskId,
+                                  taskId: taskId,
                                 ));
                               },
                               child: Container(
@@ -266,9 +266,9 @@ class CameraView extends StatelessWidget {
                                 decoration: BoxDecoration(
                                   color: Colors.grey.shade800,
                                   borderRadius:
-                                      BorderRadius.all(Radius.circular(5)),
+                                      const BorderRadius.all(Radius.circular(5)),
                                 ),
-                                child: Row(
+                                child: const Row(
                                   children: [
                                     Text(
                                       "Add to report",
@@ -323,14 +323,14 @@ class CameraView extends StatelessWidget {
                                         },
                                       ),
                                       Container(
-                                        padding: EdgeInsets.all(10),
-                                        decoration: BoxDecoration(
+                                        padding: const EdgeInsets.all(10),
+                                        decoration: const BoxDecoration(
                                           color: Colors.black,
                                           borderRadius: BorderRadius.all(
                                               Radius.circular(50)),
                                         ),
                                         child: IconButton(
-                                          icon: Icon(
+                                          icon: const Icon(
                                             Icons.delete,
                                             color: Colors.red,
                                           ),

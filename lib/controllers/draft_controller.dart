@@ -31,7 +31,7 @@ class DraftController extends GetxController {
           "",
           'Draft deleted successfully!',
           snackPosition: SnackPosition.BOTTOM,
-          margin: EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
         );
         Get.offAllNamed('/');
       } else {
@@ -39,7 +39,7 @@ class DraftController extends GetxController {
           "ERROR",
           "Invalid index!",
           snackPosition: SnackPosition.BOTTOM,
-          margin: EdgeInsets.all(20),
+          margin: const EdgeInsets.all(20),
         );
       }
     } catch (e) {
@@ -47,7 +47,7 @@ class DraftController extends GetxController {
         "ERROR",
         e.toString(),
         snackPosition: SnackPosition.BOTTOM,
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
       );
       print(e);
     }
@@ -62,14 +62,14 @@ class DraftController extends GetxController {
         "",
         'Your drafts has been deleted successfully!',
         snackPosition: SnackPosition.BOTTOM,
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
       );
     } catch (e) {
       Get.snackbar(
         "ERROR",
         e.toString(),
         snackPosition: SnackPosition.BOTTOM,
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
       );
       print(e);
     }

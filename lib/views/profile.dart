@@ -9,7 +9,7 @@ import 'package:hole_hse_inspection/widgets/footer.dart';
 import 'package:http/http.dart' as http;
 
 class Profile extends StatefulWidget {
-  Profile({super.key});
+  const Profile({super.key});
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -26,11 +26,11 @@ class _ProfileState extends State<Profile> {
     return userData ?? {}; // Return an empty map if null
   }
 
-  TextEditingController currentPass = new TextEditingController();
+  TextEditingController currentPass = TextEditingController();
 
-  TextEditingController newPass = new TextEditingController();
+  TextEditingController newPass = TextEditingController();
 
-  TextEditingController reNewPass = new TextEditingController();
+  TextEditingController reNewPass = TextEditingController();
 
   String alertText = 'Do the instructions';
 
@@ -38,7 +38,7 @@ class _ProfileState extends State<Profile> {
       String userId, String currentPassword, String newPassword) async {
     try {
       String baseUrl = Constants.baseUrl;
-      String url = '${baseUrl}/api/users/edit-user';
+      String url = '$baseUrl/api/users/edit-user';
 
       // Create the request body
       Map<String, String> body = {
@@ -98,9 +98,9 @@ class _ProfileState extends State<Profile> {
           onPressed: () {
             Get.back();
           },
-          icon: Icon(Icons.arrow_back_ios_new_rounded),
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
         ),
-        title: Text("Profile"),
+        title: const Text("Profile"),
       ),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
@@ -109,13 +109,13 @@ class _ProfileState extends State<Profile> {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               // Show a loading indicator while data is being fetched
-              return Center(child: CircularProgressIndicator());
+              return const Center(child: CircularProgressIndicator());
             } else if (snapshot.hasError) {
               // Handle errors if any
-              return Center(child: Text("Error loading user data."));
+              return const Center(child: Text("Error loading user data."));
             } else if (!snapshot.hasData) {
               // Handle case when no data is returned
-              return Center(child: Text("No user data found."));
+              return const Center(child: Text("No user data found."));
             } else {
               // Data has been successfully loaded
               final data = snapshot.data!;
@@ -128,31 +128,31 @@ class _ProfileState extends State<Profile> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        CircleAvatar(
+                        const CircleAvatar(
                           radius: 60,
                           backgroundImage: NetworkImage(
                             "https://i.pinimg.com/1200x/86/1b/54/861b54e03d4bcc4e2276a1ddf134c687.jpg",
                           ),
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: [
                             Text(data['name'] ?? "N/A",
-                                style: TextStyle(
+                                style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
                                 )),
                             Text(data['role'] ?? "N/A",
-                                style: TextStyle(fontSize: 16)),
+                                style: const TextStyle(fontSize: 16)),
                             Text(data['email'] ?? "N/A",
-                                style: TextStyle(fontSize: 14)),
+                                style: const TextStyle(fontSize: 14)),
                           ],
                         ),
-                        SizedBox(width: 12),
+                        const SizedBox(width: 12),
                       ],
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     CustomDrawerButton(
                       centerText: true,
                       backgroundColor: Colors.red.shade600,
@@ -175,7 +175,7 @@ class _ProfileState extends State<Profile> {
                               builder:
                                   (BuildContext context, StateSetter setState) {
                                 return AlertDialog(
-                                  title: Text("Update Password"),
+                                  title: const Text("Update Password"),
                                   content: SizedBox(
                                     width:
                                         MediaQuery.sizeOf(context).width - 100,
@@ -185,28 +185,28 @@ class _ProfileState extends State<Profile> {
                                         TextField(
                                           controller: currentPass,
                                           obscureText: true,
-                                          decoration: InputDecoration(
+                                          decoration: const InputDecoration(
                                               labelText: "Current Password"),
                                         ),
-                                        SizedBox(height: 8),
+                                        const SizedBox(height: 8),
                                         TextField(
                                           controller: newPass,
                                           obscureText: true,
-                                          decoration: InputDecoration(
+                                          decoration: const InputDecoration(
                                               labelText: "New Password"),
                                         ),
-                                        SizedBox(height: 8),
+                                        const SizedBox(height: 8),
                                         TextField(
                                           controller: reNewPass,
                                           obscureText: true,
-                                          decoration: InputDecoration(
+                                          decoration: const InputDecoration(
                                               labelText:
                                                   "Confirm New Password"),
                                         ),
-                                        SizedBox(height: 8),
+                                        const SizedBox(height: 8),
                                         Text(
                                           alertText,
-                                          style: TextStyle(color: Colors.red),
+                                          style: const TextStyle(color: Colors.red),
                                         ),
                                       ],
                                     ),
@@ -216,7 +216,7 @@ class _ProfileState extends State<Profile> {
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
-                                      child: Text("Cancel"),
+                                      child: const Text("Cancel"),
                                     ),
                                     ElevatedButton(
                                       onPressed: () {
@@ -251,7 +251,7 @@ class _ProfileState extends State<Profile> {
                                         Navigator.of(context)
                                             .pop(); // Close the dialog after submission
                                       },
-                                      child: Text("Update"),
+                                      child: const Text("Update"),
                                     ),
                                   ],
                                 );
@@ -272,7 +272,7 @@ class _ProfileState extends State<Profile> {
       floatingActionButton: SizedBox(
           height: 120,
           width: MediaQuery.sizeOf(context).width - 20,
-          child: AppFooter()),
+          child: const AppFooter()),
     );
   }
 }

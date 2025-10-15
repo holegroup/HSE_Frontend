@@ -17,7 +17,7 @@ class Login extends StatelessWidget {
         Container(
           height: double.infinity,
           width: double.infinity,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             image: DecorationImage(
                 fit: BoxFit.cover,
                 opacity: 0.35,
@@ -131,9 +131,9 @@ class Login extends StatelessWidget {
                         disabledBackgroundColor: ColorPalette.primaryColor.withOpacity(0.6),
                       ),
                       child: controller.isLoading.value
-                          ? Row(
+                          ? const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
+                              children: [
                                 SizedBox(
                                   width: 20,
                                   height: 20,

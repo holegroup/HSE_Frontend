@@ -16,7 +16,7 @@ import 'package:hole_hse_inspection/widgets/todo_calender.dart';
 import '../controllers/draft_controller.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                 },
               ),
             ),
-            SizedBox(
+            const SizedBox(
               width: 30,
             )
           ]),
@@ -92,7 +92,7 @@ class _HomePageState extends State<HomePage> {
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                   Image.asset(
                     'assets/images/icon.png',
                     filterQuality: FilterQuality.low,
@@ -113,19 +113,19 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                   ),
-                  SizedBox(height: 80),
+                  const SizedBox(height: 80),
                   CustomDrawerButton(
                     icon: Icons.settings,
                     label: "Profile Settings",
                     onPressed: () {
-                      Get.to(() => Profile());
+                      Get.to(() => const Profile());
                     },
                   ),
                   CustomDrawerButton(
                     icon: Icons.data_usage,
                     label: "View site data",
                     onPressed: () {
-                      Get.to(() => ViewSites());
+                      Get.to(() => const ViewSites());
                     },
                   ),
                 ],
@@ -152,8 +152,8 @@ class _HomePageState extends State<HomePage> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const SizedBox(height: 80),
-                        TodoCalendar(),
-                        SizedBox(height: 20),
+                        const TodoCalendar(),
+                        const SizedBox(height: 20),
                         const Text(
                           "Assigned tasks",
                           style: TextStyle(
@@ -205,7 +205,7 @@ class _HomePageState extends State<HomePage> {
                                                     MainAxisAlignment
                                                         .spaceBetween,
                                                 children: [
-                                                  Text(
+                                                  const Text(
                                                     'Part number: ',
                                                     style: TextStyle(
                                                         fontWeight:
@@ -222,10 +222,10 @@ class _HomePageState extends State<HomePage> {
                                               ),
                                               Text(
                                                   "Due Date: ${DateTime.parse(task['due_date']).toLocal()}"),
-                                              SizedBox(height: 4),
+                                              const SizedBox(height: 4),
                                               Text(
                                                 "${task['status']}",
-                                                style: TextStyle(
+                                                style: const TextStyle(
                                                     color: Colors.grey),
                                               ),
                                             ],
@@ -243,10 +243,10 @@ class _HomePageState extends State<HomePage> {
                                           ? Positioned(
                                               right: 0,
                                               child: Container(
-                                                margin: EdgeInsets.all(8),
-                                                padding: EdgeInsets.symmetric(
+                                                margin: const EdgeInsets.all(8),
+                                                padding: const EdgeInsets.symmetric(
                                                     vertical: 4, horizontal: 8),
-                                                decoration: BoxDecoration(
+                                                decoration: const BoxDecoration(
                                                   color: Colors.red,
                                                   borderRadius:
                                                       BorderRadius.only(
@@ -256,7 +256,7 @@ class _HomePageState extends State<HomePage> {
                                                         Radius.circular(12),
                                                   ),
                                                 ),
-                                                child: Row(
+                                                child: const Row(
                                                   children: [
                                                     Text(
                                                       "Critical Task",
@@ -277,19 +277,19 @@ class _HomePageState extends State<HomePage> {
                                                 ),
                                               ),
                                             )
-                                          : SizedBox(),
+                                          : const SizedBox(),
                                     ],
                                   );
                                 },
                               ),
-                              if (taskController.tasks.length > 0)
+                              if (taskController.tasks.isNotEmpty)
                                 TextButton(
                                   onPressed: () {
                                     Get.to(() => AllTasks());
                                   },
-                                  child: Row(
+                                  child: const Row(
                                     mainAxisSize: MainAxisSize.min,
-                                    children: const [
+                                    children: [
                                       Text(
                                         "Show More",
                                         style: TextStyle(
@@ -312,11 +312,11 @@ class _HomePageState extends State<HomePage> {
                         ),
                         Obx(() {
                           if (draftController.drafts.isEmpty) {
-                            return SizedBox(
+                            return const SizedBox(
                               height: 100,
                               width: double.maxFinite,
                               child: Center(
-                                child: const Text("No drafts available."),
+                                child: Text("No drafts available."),
                               ),
                             );
                           }
@@ -409,7 +409,7 @@ class _HomePageState extends State<HomePage> {
                           );
                         }),
                         const SizedBox(height: 20),
-                        AppFooter(),
+                        const AppFooter(),
                         const SizedBox(height: 20),
                       ],
                     ),
@@ -425,7 +425,7 @@ class _HomePageState extends State<HomePage> {
                         );
                       }
                     }),
-                    SearchBox(
+                    const SearchBox(
                       isGoToReport: true,
                     ),
                   ],

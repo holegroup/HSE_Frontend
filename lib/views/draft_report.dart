@@ -21,7 +21,7 @@ class DraftReport extends StatefulWidget {
   final String? taskId;
   final int? maintananceFreq;
 
-  DraftReport({
+  const DraftReport({
     super.key,
     required this.draftIndex,
     required this.name,
@@ -275,13 +275,13 @@ class _DraftReportState extends State<DraftReport> {
                         );
                       },
                       child: surveyController.isLoading.value == true
-                          ? SizedBox(
+                          ? const SizedBox(
                               height: 30,
                               child: CircularProgressIndicator(
                                 color: Colors.white,
                               ),
                             )
-                          : Text("Upload Draft"),
+                          : const Text("Upload Draft"),
                     );
                   })
                 ],

@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:hole_hse_inspection/controllers/new_listing_controller.dart';
 
 class NewListing extends StatefulWidget {
-  NewListing({super.key});
+  const NewListing({super.key});
 
   @override
   State<NewListing> createState() => _NewListingState();
@@ -50,7 +50,7 @@ class _NewListingState extends State<NewListing> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("New Listings"),
+        title: const Text("New Listings"),
       ),
       body: RefreshIndicator(
         onRefresh: fetchData,
@@ -61,7 +61,7 @@ class _NewListingState extends State<NewListing> {
 
   Widget _buildBody() {
     if (isLoading) {
-      return Center(
+      return const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -78,18 +78,18 @@ class _NewListingState extends State<NewListing> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.error_outline, size: 64, color: Colors.red),
-            SizedBox(height: 16),
-            Text(
+            const Icon(Icons.error_outline, size: 64, color: Colors.red),
+            const SizedBox(height: 16),
+            const Text(
               "Failed to load listings",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
-            Text("Please check your connection and try again"),
-            SizedBox(height: 16),
+            const SizedBox(height: 8),
+            const Text("Please check your connection and try again"),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: fetchData,
-              child: Text("Retry"),
+              child: const Text("Retry"),
             ),
           ],
         ),
@@ -101,13 +101,13 @@ class _NewListingState extends State<NewListing> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Icon(Icons.inbox_outlined, size: 64, color: Colors.grey),
-            SizedBox(height: 16),
-            Text(
+            const Icon(Icons.inbox_outlined, size: 64, color: Colors.grey),
+            const SizedBox(height: 16),
+            const Text(
               "No New Listings",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               "There are no pending items or parts to review",
               textAlign: TextAlign.center,
@@ -121,7 +121,7 @@ class _NewListingState extends State<NewListing> {
     return Stack(
       children: [
         ListView(
-          physics: AlwaysScrollableScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(),
           children: [
             // Display items
             if (items.isNotEmpty) ...[
@@ -136,7 +136,7 @@ class _NewListingState extends State<NewListing> {
                   ),
                 ),
               ),
-              ...items.map((item) => buildItemCard(item)).toList(),
+              ...items.map((item) => buildItemCard(item)),
             ],
             // Display parts
             if (parts.isNotEmpty) ...[
@@ -151,9 +151,9 @@ class _NewListingState extends State<NewListing> {
                   ),
                 ),
               ),
-              ...parts.map((part) => buildPartCard(part)).toList(),
+              ...parts.map((part) => buildPartCard(part)),
             ],
-            SizedBox(height: 20), // Bottom padding
+            const SizedBox(height: 20), // Bottom padding
           ],
         ),
         Obx(() {
@@ -168,11 +168,11 @@ class _NewListingState extends State<NewListing> {
                 child: Container(
                   width: MediaQuery.sizeOf(context).width * 0.3,
                   height: MediaQuery.sizeOf(context).width * 0.3,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(10)),
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
@@ -185,7 +185,7 @@ class _NewListingState extends State<NewListing> {
               ),
             );
           } else {
-            return SizedBox();
+            return const SizedBox();
           }
         }),
       ],
@@ -195,7 +195,7 @@ class _NewListingState extends State<NewListing> {
   // Widget to display each item
   Widget buildItemCard(dynamic item) {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       elevation: 4.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
@@ -207,29 +207,29 @@ class _NewListingState extends State<NewListing> {
           children: [
             Text(
               "Site Name: ${item['siteId']['site_name']}",
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               "Equipment Name: ${item['productId']['equip_name']}",
-              style: TextStyle(fontSize: 16.0),
+              style: const TextStyle(fontSize: 16.0),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               "Serial Number: ${item['serial_number']}",
-              style: TextStyle(fontSize: 14.0),
+              style: const TextStyle(fontSize: 14.0),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               "Added By: ${item['added_by']['name']}",
-              style: TextStyle(fontSize: 14.0),
+              style: const TextStyle(fontSize: 14.0),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               "Status: ${item['status']}",
-              style: TextStyle(fontSize: 14.0),
+              style: const TextStyle(fontSize: 14.0),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -242,10 +242,10 @@ class _NewListingState extends State<NewListing> {
                     },
                     style:
                         ElevatedButton.styleFrom(backgroundColor: Colors.grey),
-                    child: Text("Reject"),
+                    child: const Text("Reject"),
                   ),
                 ),
-                SizedBox(width: 12),
+                const SizedBox(width: 12),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () async {
@@ -255,7 +255,7 @@ class _NewListingState extends State<NewListing> {
                     },
                     style:
                         ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                    child: Text("Accept"),
+                    child: const Text("Accept"),
                   ),
                 ),
               ],
@@ -269,7 +269,7 @@ class _NewListingState extends State<NewListing> {
   // Widget to display each part
   Widget buildPartCard(dynamic part) {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       elevation: 4.0,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
@@ -281,34 +281,34 @@ class _NewListingState extends State<NewListing> {
           children: [
             Text(
               "Equipment Name: ${part['productId']['equip_name']}",
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               "Item Name: ${part['itemId']['item_name']}",
-              style: TextStyle(fontSize: 16.0),
+              style: const TextStyle(fontSize: 16.0),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               "Part Name: ${part['part_name']}",
-              style: TextStyle(fontSize: 14.0),
+              style: const TextStyle(fontSize: 14.0),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               "Part Number: ${part['part_number']}",
-              style: TextStyle(fontSize: 14.0),
+              style: const TextStyle(fontSize: 14.0),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               "Added By: ${part['added_by']['name']}",
-              style: TextStyle(fontSize: 14.0),
+              style: const TextStyle(fontSize: 14.0),
             ),
-            SizedBox(height: 8.0),
+            const SizedBox(height: 8.0),
             Text(
               "Status: ${part['status']}",
-              style: TextStyle(fontSize: 14.0),
+              style: const TextStyle(fontSize: 14.0),
             ),
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
@@ -322,10 +322,10 @@ class _NewListingState extends State<NewListing> {
                     },
                     style:
                         ElevatedButton.styleFrom(backgroundColor: Colors.grey),
-                    child: Text("Reject"),
+                    child: const Text("Reject"),
                   ),
                 ),
-                SizedBox(width: 12),
+                const SizedBox(width: 12),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () async {
@@ -336,7 +336,7 @@ class _NewListingState extends State<NewListing> {
                     },
                     style:
                         ElevatedButton.styleFrom(backgroundColor: Colors.black),
-                    child: Text("Accept"),
+                    child: const Text("Accept"),
                   ),
                 ),
               ],

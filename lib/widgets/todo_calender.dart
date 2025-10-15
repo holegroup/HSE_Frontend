@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 
 class TodoCalendar extends StatefulWidget {
-  TodoCalendar({super.key});
+  const TodoCalendar({super.key});
 
   @override
   State<TodoCalendar> createState() => _TodoCalendarState();
@@ -53,7 +53,7 @@ class _TodoCalendarState extends State<TodoCalendar> {
   }
 
   Future<void> _fetchData() async {
-    String apiUrl = "${baseUrl}/api/tasks/get-task-date-status";
+    String apiUrl = "$baseUrl/api/tasks/get-task-date-status";
 
     try {
       final response = await http.get(
@@ -113,7 +113,7 @@ class _TodoCalendarState extends State<TodoCalendar> {
         });
       },
       calendarFormat: CalendarFormat.twoWeeks,
-      calendarStyle: CalendarStyle(
+      calendarStyle: const CalendarStyle(
         todayDecoration: BoxDecoration(
           color: Colors.grey,
           shape: BoxShape.circle,
@@ -128,7 +128,7 @@ class _TodoCalendarState extends State<TodoCalendar> {
           return Container(
             margin: const EdgeInsets.all(4.0),
             alignment: Alignment.center,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.indigo,
               shape: BoxShape.circle,
             ),
@@ -142,7 +142,7 @@ class _TodoCalendarState extends State<TodoCalendar> {
           return Container(
             margin: const EdgeInsets.all(4.0),
             alignment: Alignment.center,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               color: Colors.grey,
               shape: BoxShape.circle,
             ),

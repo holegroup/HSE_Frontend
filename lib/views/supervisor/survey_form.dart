@@ -152,7 +152,7 @@ class _SurveyFormState extends State<SurveyForm> {
                                 launchUrl(Uri.parse(
                                     "https://www.google.com/maps/search/?api=1&query=${item['lat']},${item['long']}"));
                               },
-                              child: Chip(
+                              child: const Chip(
                                   label: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [

@@ -64,7 +64,7 @@ class LoginController extends GetxController {
       // If primary server fails, try fallback server
       if (response == null) {
         print("Primary server failed, trying fallback server...");
-        Get.snackbar("Connecting", "Trying remote server...", duration: Duration(seconds: 2));
+        Get.snackbar("Connecting", "Trying remote server...", duration: const Duration(seconds: 2));
         response = await _attemptLogin(
           Constants.fallbackUrl, 
           emailController.text, 
@@ -89,7 +89,7 @@ class LoginController extends GetxController {
           "Cannot connect to the backend server. Please start the backend server and try again.",
           backgroundColor: Colors.red.shade100,
           colorText: Colors.red.shade900,
-          duration: Duration(seconds: 6),
+          duration: const Duration(seconds: 6),
           mainButton: TextButton(
             onPressed: () {
               Get.back();
@@ -129,8 +129,8 @@ class LoginController extends GetxController {
         if (userRole != selectedRole.value) {
           Get.snackbar(
             "Role Mismatch", 
-            "Your account role is '${userRole}' but you selected '${selectedRole.value}'. Please select the correct role.",
-            duration: Duration(seconds: 4),
+            "Your account role is '$userRole' but you selected '${selectedRole.value}'. Please select the correct role.",
+            duration: const Duration(seconds: 4),
             backgroundColor: Colors.orange.shade100,
             colorText: Colors.orange.shade900,
           );
@@ -260,7 +260,7 @@ class LoginController extends GetxController {
   void _showServerInstructions() {
     Get.dialog(
       AlertDialog(
-        title: Row(
+        title: const Row(
           children: [
             Icon(Icons.info_outline, color: Colors.blue),
             SizedBox(width: 8),
@@ -272,38 +272,38 @@ class LoginController extends GetxController {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
+              const Text(
                 'To fix the connection error, please start the backend server:',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 16),
-              Text('Step 1: Navigate to the backend folder'),
+              const SizedBox(height: 16),
+              const Text('Step 1: Navigate to the backend folder'),
               Container(
-                margin: EdgeInsets.symmetric(vertical: 8),
-                padding: EdgeInsets.all(8),
+                margin: const EdgeInsets.symmetric(vertical: 8),
+                padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: Colors.grey.shade100,
                   borderRadius: BorderRadius.circular(4),
                 ),
-                child: Text(
+                child: const Text(
                   'c:\\Users\\USER\\Downloads\\HSE\\hse_buddy_backend-main',
                   style: TextStyle(fontFamily: 'monospace', fontSize: 12),
                 ),
               ),
-              Text('Step 2: Run the startup script'),
+              const Text('Step 2: Run the startup script'),
               Container(
-                margin: EdgeInsets.symmetric(vertical: 8),
-                padding: EdgeInsets.all(8),
+                margin: const EdgeInsets.symmetric(vertical: 8),
+                padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: Colors.grey.shade100,
                   borderRadius: BorderRadius.circular(4),
                 ),
-                child: Text(
+                child: const Text(
                   'Double-click: START_BACKEND_SERVER.bat',
                   style: TextStyle(fontFamily: 'monospace', fontSize: 12),
                 ),
               ),
-              Text('Step 3: Wait for server to start'),
+              const Text('Step 3: Wait for server to start'),
               Text(
                 'You should see: "Server is listening on port 5000"',
                 style: TextStyle(fontSize: 12, color: Colors.green.shade700),
@@ -314,7 +314,7 @@ class LoginController extends GetxController {
         actions: [
           TextButton(
             onPressed: () => Get.back(),
-            child: Text('Close'),
+            child: const Text('Close'),
           ),
           ElevatedButton(
             onPressed: () {
@@ -326,7 +326,7 @@ class LoginController extends GetxController {
                 colorText: Colors.blue.shade900,
               );
             },
-            child: Text('I\'ve Started the Server'),
+            child: const Text('I\'ve Started the Server'),
           ),
         ],
       ),

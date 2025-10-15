@@ -9,6 +9,8 @@ import 'dart:convert';
 import 'dart:ui';
 
 class TaskPieChart extends StatefulWidget {
+  const TaskPieChart({super.key});
+
   @override
   _TaskPieChartState createState() => _TaskPieChartState();
 }
@@ -144,7 +146,7 @@ class _TaskPieChartState extends State<TaskPieChart> {
         "Unable to load task statistics. Please check your connection and try again.",
         backgroundColor: Colors.orange.shade100,
         colorText: Colors.orange.shade900,
-        duration: Duration(seconds: 3),
+        duration: const Duration(seconds: 3),
       );
     }
   }
@@ -180,7 +182,7 @@ class _TaskPieChartState extends State<TaskPieChart> {
                 onPressed: () {
                   Navigator.of(context).pop();
                 },
-                child: Text('Cancel'),
+                child: const Text('Cancel'),
               ),
               TextButton(
                 onPressed: () {
@@ -194,7 +196,7 @@ class _TaskPieChartState extends State<TaskPieChart> {
                         : null,
                   );
                 },
-                child: Text('Done'),
+                child: const Text('Done'),
               ),
             ],
           ),
@@ -213,7 +215,7 @@ class _TaskPieChartState extends State<TaskPieChart> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Row(
+        const Row(
           children: [
             SizedBox(width: 10),
             Text(
@@ -232,32 +234,32 @@ class _TaskPieChartState extends State<TaskPieChart> {
               TextButton(
                 onPressed: () => _selectDate(context, true),
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(1),
-                    borderRadius: BorderRadius.all(Radius.circular(50)),
+                    borderRadius: const BorderRadius.all(Radius.circular(50)),
                   ),
                   child: Text(
                     startDate == null
                         ? "Select Start Date"
                         : "${startDate!.toLocal()}".split(' ')[0],
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ),
               ),
               TextButton(
                 onPressed: () => _selectDate(context, false),
                 child: Container(
-                  padding: EdgeInsets.symmetric(vertical: 4, horizontal: 10),
+                  padding: const EdgeInsets.symmetric(vertical: 4, horizontal: 10),
                   decoration: BoxDecoration(
                     color: Colors.black.withOpacity(1),
-                    borderRadius: BorderRadius.all(Radius.circular(50)),
+                    borderRadius: const BorderRadius.all(Radius.circular(50)),
                   ),
                   child: Text(
                     endDate == null
                         ? "Select End Date"
                         : "${endDate!.toLocal()}".split(' ')[0],
-                    style: TextStyle(color: Colors.white),
+                    style: const TextStyle(color: Colors.white),
                   ),
                 ),
               ),
@@ -269,15 +271,15 @@ class _TaskPieChartState extends State<TaskPieChart> {
                     fetchChartData();
                   });
                 },
-                icon: Icon(Icons.repeat),
+                icon: const Icon(Icons.repeat),
               ),
             ],
           ),
         ),
-        Container(
+        SizedBox(
           height: 200,
           child: isLoading
-              ? Center(
+              ? const Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -297,7 +299,7 @@ class _TaskPieChartState extends State<TaskPieChart> {
                             size: 48,
                             color: Colors.grey.shade400,
                           ),
-                          SizedBox(height: 8),
+                          const SizedBox(height: 8),
                           Text(
                             'No task data available',
                             style: TextStyle(
@@ -310,11 +312,11 @@ class _TaskPieChartState extends State<TaskPieChart> {
                     )
                   : PieChart(
                       dataMap: dataMap,
-                      animationDuration: Duration(milliseconds: 800),
+                      animationDuration: const Duration(milliseconds: 800),
                       chartType: ChartType.ring,
                       chartRadius: MediaQuery.of(context).size.width / 2.5,
                       colorList: colorList,
-                      legendOptions: LegendOptions(
+                      legendOptions: const LegendOptions(
                         showLegends: true,
                         legendPosition: LegendPosition.right,
                         legendTextStyle: TextStyle(
@@ -322,7 +324,7 @@ class _TaskPieChartState extends State<TaskPieChart> {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
-                      chartValuesOptions: ChartValuesOptions(
+                      chartValuesOptions: const ChartValuesOptions(
                         showChartValuesInPercentage: false,
                         showChartValues: true,
                         showChartValuesOutside: false,

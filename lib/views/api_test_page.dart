@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:hole_hse_inspection/config/api_test.dart';
 import 'package:hole_hse_inspection/config/env.dart';
-import 'package:hole_hse_inspection/controllers/login_controller.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 class ApiTestPage extends StatefulWidget {
+  const ApiTestPage({super.key});
+
   @override
   _ApiTestPageState createState() => _ApiTestPageState();
 }
@@ -55,11 +53,11 @@ class _ApiTestPageState extends State<ApiTestPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('API Connection Test'),
+        title: const Text('API Connection Test'),
         backgroundColor: Colors.blue.shade700,
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -67,11 +65,11 @@ class _ApiTestPageState extends State<ApiTestPage> {
             Card(
               elevation: 4,
               child: Padding(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    const Row(
                       children: [
                         Icon(Icons.dns, color: Colors.blue),
                         SizedBox(width: 8),
@@ -84,14 +82,14 @@ class _ApiTestPageState extends State<ApiTestPage> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     _buildInfoRow('Primary URL:', Constants.baseUrl),
                     _buildInfoRow('Fallback URL:', Constants.fallbackUrl),
                     _buildInfoRow('Secondary:', Constants.secondaryFallbackUrl),
-                    Divider(height: 24),
+                    const Divider(height: 24),
                     Row(
                       children: [
-                        Text(
+                        const Text(
                           'Active Server: ',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
@@ -107,7 +105,7 @@ class _ApiTestPageState extends State<ApiTestPage> {
                           ),
                         ),
                         if (!activeUrl.contains('No server'))
-                          Icon(Icons.check_circle, color: Colors.green, size: 20),
+                          const Icon(Icons.check_circle, color: Colors.green, size: 20),
                       ],
                     ),
                   ],
@@ -115,7 +113,7 @@ class _ApiTestPageState extends State<ApiTestPage> {
               ),
             ),
             
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             
             // Test Controls
             Row(
@@ -123,47 +121,47 @@ class _ApiTestPageState extends State<ApiTestPage> {
                 Expanded(
                   child: ElevatedButton.icon(
                     onPressed: isLoading ? null : checkConnection,
-                    icon: Icon(Icons.refresh),
-                    label: Text('Refresh Status'),
+                    icon: const Icon(Icons.refresh),
+                    label: const Text('Refresh Status'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.blue,
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
                   ),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Expanded(
                   child: ElevatedButton.icon(
                     onPressed: isLoading ? null : runFullTest,
-                    icon: Icon(Icons.play_arrow),
-                    label: Text('Run Full Test'),
+                    icon: const Icon(Icons.play_arrow),
+                    label: const Text('Run Full Test'),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.green,
-                      padding: EdgeInsets.symmetric(vertical: 12),
+                      padding: const EdgeInsets.symmetric(vertical: 12),
                     ),
                   ),
                 ),
               ],
             ),
             
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             
             // Quick Test Button
             ElevatedButton.icon(
               onPressed: isLoading ? null : () => ApiConnectionTest.showTestResults(context),
-              icon: Icon(Icons.bug_report),
-              label: Text('Quick Test (Dialog)'),
+              icon: const Icon(Icons.bug_report),
+              label: const Text('Quick Test (Dialog)'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.orange,
-                minimumSize: Size(double.infinity, 45),
+                minimumSize: const Size(double.infinity, 45),
               ),
             ),
             
             // Loading Indicator
             if (isLoading)
               Container(
-                margin: EdgeInsets.only(top: 24),
-                child: Center(
+                margin: const EdgeInsets.only(top: 24),
+                child: const Center(
                   child: Column(
                     children: [
                       CircularProgressIndicator(),
@@ -176,11 +174,11 @@ class _ApiTestPageState extends State<ApiTestPage> {
             
             // Test Results
             if (testResults.isNotEmpty && !isLoading) ...[
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               Card(
                 elevation: 4,
                 child: Padding(
-                  padding: EdgeInsets.all(16),
+                  padding: const EdgeInsets.all(16),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -194,8 +192,8 @@ class _ApiTestPageState extends State<ApiTestPage> {
                               ? Colors.green 
                               : Colors.red,
                           ),
-                          SizedBox(width: 8),
-                          Text(
+                          const SizedBox(width: 8),
+                          const Text(
                             'Test Results',
                             style: TextStyle(
                               fontSize: 18,
@@ -204,11 +202,11 @@ class _ApiTestPageState extends State<ApiTestPage> {
                           ),
                         ],
                       ),
-                      SizedBox(height: 16),
+                      const SizedBox(height: 16),
                       
                       // Summary
                       Container(
-                        padding: EdgeInsets.all(12),
+                        padding: const EdgeInsets.all(12),
                         decoration: BoxDecoration(
                           color: (testResults['successRate'] ?? 0) > 80 
                             ? Colors.green.shade50 
@@ -220,9 +218,9 @@ class _ApiTestPageState extends State<ApiTestPage> {
                           children: [
                             Text(
                               'Summary: ${testResults['summary'] ?? 'N/A'}',
-                              style: TextStyle(fontWeight: FontWeight.bold),
+                              style: const TextStyle(fontWeight: FontWeight.bold),
                             ),
-                            SizedBox(height: 8),
+                            const SizedBox(height: 8),
                             LinearProgressIndicator(
                               value: (testResults['successRate'] ?? 0) / 100,
                               backgroundColor: Colors.grey.shade300,
@@ -232,10 +230,10 @@ class _ApiTestPageState extends State<ApiTestPage> {
                                   : Colors.red,
                               ),
                             ),
-                            SizedBox(height: 4),
+                            const SizedBox(height: 4),
                             Text(
                               'Success Rate: ${testResults['successRate']?.toStringAsFixed(1) ?? '0'}%',
-                              style: TextStyle(fontSize: 12),
+                              style: const TextStyle(fontSize: 12),
                             ),
                           ],
                         ),
@@ -243,13 +241,13 @@ class _ApiTestPageState extends State<ApiTestPage> {
                       
                       // Endpoint Results
                       if (testResults['results'] != null) ...[
-                        SizedBox(height: 16),
-                        Text(
+                        const SizedBox(height: 16),
+                        const Text(
                           'Endpoint Details:',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
-                        SizedBox(height: 8),
-                        Container(
+                        const SizedBox(height: 8),
+                        SizedBox(
                           height: 300,
                           child: ListView.builder(
                             itemCount: testResults['results'].length,
@@ -264,7 +262,7 @@ class _ApiTestPageState extends State<ApiTestPage> {
                                 ),
                                 title: Text(
                                   key,
-                                  style: TextStyle(fontSize: 14),
+                                  style: const TextStyle(fontSize: 14),
                                 ),
                                 dense: true,
                               );
@@ -276,26 +274,26 @@ class _ApiTestPageState extends State<ApiTestPage> {
                       // Errors
                       if (testResults['errors'] != null && 
                           testResults['errors'].isNotEmpty) ...[
-                        SizedBox(height: 16),
-                        Text(
+                        const SizedBox(height: 16),
+                        const Text(
                           'Failed Endpoints:',
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             color: Colors.red,
                           ),
                         ),
-                        SizedBox(height: 8),
+                        const SizedBox(height: 8),
                         ...testResults['errors'].entries.map((e) => 
                           Padding(
-                            padding: EdgeInsets.only(bottom: 4),
+                            padding: const EdgeInsets.only(bottom: 4),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text('• ', style: TextStyle(color: Colors.red)),
+                                const Text('• ', style: TextStyle(color: Colors.red)),
                                 Expanded(
                                   child: Text(
                                     '${e.key}: ${e.value}',
-                                    style: TextStyle(fontSize: 12),
+                                    style: const TextStyle(fontSize: 12),
                                   ),
                                 ),
                               ],
@@ -310,16 +308,16 @@ class _ApiTestPageState extends State<ApiTestPage> {
             ],
             
             // Instructions Card
-            SizedBox(height: 24),
+            const SizedBox(height: 24),
             Card(
               elevation: 2,
               color: Colors.blue.shade50,
               child: Padding(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Row(
+                    const Row(
                       children: [
                         Icon(Icons.info_outline, color: Colors.blue),
                         SizedBox(width: 8),
@@ -332,7 +330,7 @@ class _ApiTestPageState extends State<ApiTestPage> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 12),
+                    const SizedBox(height: 12),
                     _buildInstruction('1. Ensure backend server is running'),
                     _buildInstruction('2. Check if using correct URL for your platform'),
                     _buildInstruction('3. For Android emulator: use 10.0.2.2 instead of localhost'),
@@ -350,7 +348,7 @@ class _ApiTestPageState extends State<ApiTestPage> {
   
   Widget _buildInfoRow(String label, String value) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -358,7 +356,7 @@ class _ApiTestPageState extends State<ApiTestPage> {
             width: 120,
             child: Text(
               label,
-              style: TextStyle(fontWeight: FontWeight.w500),
+              style: const TextStyle(fontWeight: FontWeight.w500),
             ),
           ),
           Expanded(
@@ -374,16 +372,16 @@ class _ApiTestPageState extends State<ApiTestPage> {
   
   Widget _buildInstruction(String text) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(Icons.check_circle_outline, size: 16, color: Colors.blue),
-          SizedBox(width: 8),
+          const Icon(Icons.check_circle_outline, size: 16, color: Colors.blue),
+          const SizedBox(width: 8),
           Expanded(
             child: Text(
               text,
-              style: TextStyle(fontSize: 13),
+              style: const TextStyle(fontSize: 13),
             ),
           ),
         ],

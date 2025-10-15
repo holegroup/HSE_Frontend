@@ -75,7 +75,7 @@ class _CreateTaskState extends State<CreateTask> {
       isLoading = true; 
     });
 
-    final String apiUrl = "${baseUrl}/api/tasks/create-task";
+    final String apiUrl = "$baseUrl/api/tasks/create-task";
 
     final String inspectorName = userSearchBarController.searchController.text.trim();
     final String inspectorEmail = userSearchBarController.selectedInspectorEmail.value.trim(); 
@@ -157,7 +157,7 @@ class _CreateTaskState extends State<CreateTask> {
           "Task created successfully! Task ID: ${responseData['taskId'] ?? 'N/A'}",
           backgroundColor: Colors.green.shade100,
           colorText: Colors.green.shade900,
-          duration: Duration(seconds: 4),
+          duration: const Duration(seconds: 4),
           mainButton: TextButton(
             onPressed: () {
               Get.back();
@@ -191,7 +191,7 @@ class _CreateTaskState extends State<CreateTask> {
             errorMessage,
             backgroundColor: Colors.red.shade100,
             colorText: Colors.red.shade900,
-            duration: Duration(seconds: 6),
+            duration: const Duration(seconds: 6),
             mainButton: TextButton(
               onPressed: () {
                 Get.back();
@@ -209,7 +209,7 @@ class _CreateTaskState extends State<CreateTask> {
             "Server error: ${response.statusCode}",
             backgroundColor: Colors.red.shade100,
             colorText: Colors.red.shade900,
-            duration: Duration(seconds: 4),
+            duration: const Duration(seconds: 4),
           );
         }
       }
@@ -220,7 +220,7 @@ class _CreateTaskState extends State<CreateTask> {
         "Failed to connect to server. Please check your connection and try again.",
         backgroundColor: Colors.red.shade100,
         colorText: Colors.red.shade900,
-        duration: Duration(seconds: 4),
+        duration: const Duration(seconds: 4),
       );
     } finally {
       setState(() {
@@ -249,7 +249,7 @@ class _CreateTaskState extends State<CreateTask> {
   void _showDebugInfo(Map<String, dynamic> errorData) {
     Get.dialog(
       AlertDialog(
-        title: Row(
+        title: const Row(
           children: [
             Icon(Icons.bug_report, color: Colors.orange),
             SizedBox(width: 8),
@@ -261,28 +261,28 @@ class _CreateTaskState extends State<CreateTask> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Text(
+              const Text(
                 'Error Details:',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Container(
-                padding: EdgeInsets.all(12),
+                padding: const EdgeInsets.all(12),
                 decoration: BoxDecoration(
                   color: Colors.grey.shade100,
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Text(
                   errorData.toString(),
-                  style: TextStyle(fontFamily: 'monospace', fontSize: 12),
+                  style: const TextStyle(fontFamily: 'monospace', fontSize: 12),
                 ),
               ),
-              SizedBox(height: 16),
-              Text(
+              const SizedBox(height: 16),
+              const Text(
                 'Current Form Data:',
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text('Inspector: ${userSearchBarController.searchController.text}'),
               Text('Email: ${userSearchBarController.selectedInspectorEmail.value}'),
               Text('Product: ${searchBarController.searchController.text}'),
@@ -297,14 +297,14 @@ class _CreateTaskState extends State<CreateTask> {
         actions: [
           TextButton(
             onPressed: () => Get.back(),
-            child: Text('Close'),
+            child: const Text('Close'),
           ),
           ElevatedButton(
             onPressed: () {
               Get.back();
               // Copy debug info to clipboard or share
             },
-            child: Text('Copy Info'),
+            child: const Text('Copy Info'),
           ),
         ],
       ),
@@ -386,7 +386,7 @@ class _CreateTaskState extends State<CreateTask> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      suffixIcon: Icon(Icons.calendar_today),
+                      suffixIcon: const Icon(Icons.calendar_today),
                     ),
                     onTap: () async {
                       showModalBottomSheet(
@@ -394,11 +394,11 @@ class _CreateTaskState extends State<CreateTask> {
                         builder: (BuildContext context) {
                           DateTime selectedDate =
                               DateTime.now(); // Default to current date
-                          return Container(
+                          return SizedBox(
                             height: 250,
                             child: Column(
                               children: [
-                                SizedBox(height: 20),
+                                const SizedBox(height: 20),
                                 Expanded(
                                   child: CupertinoDatePicker(
                                     initialDateTime: DateTime.now(),
@@ -408,7 +408,7 @@ class _CreateTaskState extends State<CreateTask> {
                                     },
                                   ),
                                 ),
-                                SizedBox(height: 40),
+                                const SizedBox(height: 40),
                                 Row(
                                   mainAxisAlignment:
                                       MainAxisAlignment.spaceEvenly,
@@ -417,7 +417,7 @@ class _CreateTaskState extends State<CreateTask> {
                                       onPressed: () {
                                         Navigator.pop(context);
                                       },
-                                      child: Text('Cancel'),
+                                      child: const Text('Cancel'),
                                     ),
                                     TextButton(
                                       onPressed: () {
@@ -427,7 +427,7 @@ class _CreateTaskState extends State<CreateTask> {
                                         });
                                         Navigator.pop(context);
                                       },
-                                      child: Text('Done'),
+                                      child: const Text('Done'),
                                     ),
                                   ],
                                 ),
@@ -490,9 +490,9 @@ class _CreateTaskState extends State<CreateTask> {
                       minWidth: 80.0,
                     ),
                     isSelected: _isCriticalPart,
-                    children: [
+                    children: const [
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        padding: EdgeInsets.symmetric(horizontal: 12),
                         child: Row(
                           children: [
                             Text("Normal Part"),
@@ -505,7 +505,7 @@ class _CreateTaskState extends State<CreateTask> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        padding: EdgeInsets.symmetric(horizontal: 12),
                         child: Row(
                           children: [
                             Text("Critical Part"),
@@ -522,17 +522,17 @@ class _CreateTaskState extends State<CreateTask> {
                   const SizedBox(height: 24),
                   Row(
                     children: [
-                      Text(
+                      const Text(
                         "Select\nFrequency",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       Expanded(
                         child: TextFormField(
-                          keyboardType: TextInputType.numberWithOptions(),
+                          keyboardType: const TextInputType.numberWithOptions(),
                           controller: _freqController,
                           decoration: InputDecoration(
                             labelText: 'Frequency in Days',
@@ -545,7 +545,7 @@ class _CreateTaskState extends State<CreateTask> {
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(100),
                             ),
-                            suffixIcon: Icon(Icons.data_exploration_rounded),
+                            suffixIcon: const Icon(Icons.data_exploration_rounded),
                           ),
                         ),
                       ),
@@ -561,7 +561,7 @@ class _CreateTaskState extends State<CreateTask> {
                               submitTask();
                             },
                       child: isLoading
-                          ? CircularProgressIndicator(
+                          ? const CircularProgressIndicator(
                               color: Colors.white,
                             )
                           : const Text('Submit'),
@@ -574,13 +574,13 @@ class _CreateTaskState extends State<CreateTask> {
           ),
           Obx(() {
             if (searchBarController.isVisible.value == false) {
-              return SizedBox();
+              return const SizedBox();
             } else {
               return Positioned.fill(
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(16.0),
                     child: SearchBox(),
                   ),
                 ),
@@ -589,13 +589,13 @@ class _CreateTaskState extends State<CreateTask> {
           }),
           Obx(() {
             if (userSearchBarController.isVisible.value == false) {
-              return SizedBox();
+              return const SizedBox();
             } else {
               return Positioned.fill(
                 child: BackdropFilter(
                   filter: ImageFilter.blur(sigmaX: 5.0, sigmaY: 5.0),
-                  child: Padding(
-                    padding: const EdgeInsets.all(16.0),
+                  child: const Padding(
+                    padding: EdgeInsets.all(16.0),
                     child: UserSearchBox(),
                   ),
                 ),

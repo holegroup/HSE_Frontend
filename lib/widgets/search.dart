@@ -39,7 +39,7 @@ class SearchBox extends StatelessWidget {
                   onPressed: () {
                     searchBarController.isVisible.value = false;
                   },
-                  icon: Icon(Icons.close)),
+                  icon: const Icon(Icons.close)),
               suffixIcon: Obx(() {
                 if (searchBarController.isLoading.value == false) {
                   return Row(
@@ -49,7 +49,7 @@ class SearchBox extends StatelessWidget {
                         onPressed: () {
                           searchBarController.loadInitialProducts();
                         },
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.refresh,
                           color: ColorPalette.primaryColor,
                         ),
@@ -65,7 +65,7 @@ class SearchBox extends StatelessWidget {
                           shadows: [
                             Shadow(
                               color: Colors.blue.shade900.withOpacity(0.9),
-                              offset: Offset(0, 0),
+                              offset: const Offset(0, 0),
                               blurRadius: 30,
                             )
                           ],
@@ -74,7 +74,7 @@ class SearchBox extends StatelessWidget {
                     ],
                   );
                 } else {
-                  return Padding(
+                  return const Padding(
                     padding: EdgeInsets.all(12),
                     child: SizedBox(
                       width: 20,
@@ -109,7 +109,7 @@ class SearchBox extends StatelessWidget {
                   ),
                 ],
               ),
-              child: Center(
+              child: const Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -121,7 +121,7 @@ class SearchBox extends StatelessWidget {
               ),
             );
           }
-          return SizedBox.shrink();
+          return const SizedBox.shrink();
         }),
 
         // Empty state message
@@ -145,13 +145,13 @@ class SearchBox extends StatelessWidget {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Icon(Icons.inventory_2_outlined, size: 32, color: Colors.grey),
-                    SizedBox(height: 8),
+                    const Icon(Icons.inventory_2_outlined, size: 32, color: Colors.grey),
+                    const SizedBox(height: 8),
                     Text(
                       "No products found in database",
                       style: TextStyle(fontSize: 14, color: Colors.grey[600]),
                     ),
-                    SizedBox(height: 4),
+                    const SizedBox(height: 4),
                     Text(
                       "Please add products first",
                       style: TextStyle(fontSize: 12, color: Colors.grey[500]),
@@ -160,14 +160,14 @@ class SearchBox extends StatelessWidget {
                       onPressed: () {
                         searchBarController.loadInitialProducts();
                       },
-                      child: Text("Refresh"),
+                      child: const Text("Refresh"),
                     ),
                   ],
                 ),
               ),
             );
           }
-          return SizedBox.shrink();
+          return const SizedBox.shrink();
         }),
 
         // Suggestions list
@@ -205,13 +205,13 @@ class SearchBox extends StatelessWidget {
                         },
                         child: Container(
                           height: 60,
-                          padding: EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(8),
                           margin: EdgeInsets.only(
                               bottom: index + 1 ==
                                       searchBarController.filteredSites.length
                                   ? 0
                                   : 8),
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               // color: Colors.white,
                               borderRadius: BorderRadius.all(Radius.circular(5))),
                           child: Column(
@@ -266,21 +266,21 @@ class SearchBox extends StatelessWidget {
                     searchBarController.isVisible.value = false;
                   },
                   child: Container(
-                    margin: EdgeInsets.only(top: 30),
-                    padding: EdgeInsets.all(10),
+                    margin: const EdgeInsets.only(top: 30),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.7),
-                          offset: Offset(0, 6),
+                          offset: const Offset(0, 6),
                           blurRadius: 14,
                           spreadRadius: -5,
                         )
                       ],
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.close,
                     ),
                   ),

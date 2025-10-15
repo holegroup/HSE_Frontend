@@ -7,7 +7,7 @@ class SiteDetailPage extends StatefulWidget {
   final String siteId;
   final String address;
 
-  SiteDetailPage({
+  const SiteDetailPage({
     super.key,
     required this.siteName,
     required this.siteId,
@@ -127,7 +127,7 @@ class _SiteDetailPageState extends State<SiteDetailPage> {
                             productId: selectedEquipId.toString(),
                             SiteId: widget.siteId,
                           ),
-                          child: Row(
+                          child: const Row(
                             children: [
                               Text("Add Item"),
                               SizedBox(width: 6),
@@ -189,7 +189,7 @@ class _SiteDetailPageState extends State<SiteDetailPage> {
                                       productId: selectedEquipId.toString(),
                                       itemId: item['_id'],
                                     ),
-                                    child: Row(
+                                    child: const Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.center,
                                       children: [

@@ -57,13 +57,13 @@ class _PaginateState extends State<Paginate> {
                       : ColorPalette.primaryColor,
                   child: IconButton(
                       onPressed: goToPreviousPage,
-                      icon: Icon(Icons.keyboard_arrow_left_rounded))),
-              SizedBox(width: 8),
+                      icon: const Icon(Icons.keyboard_arrow_left_rounded))),
+              const SizedBox(width: 8),
               Container(
                   width: MediaQuery.sizeOf(context).width * 0.5,
                   height: 50,
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  decoration: BoxDecoration(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(80)),
                     boxShadow: [
@@ -98,7 +98,7 @@ class _PaginateState extends State<Paginate> {
                                 ),
                               ),
                               alignment: Alignment.center,
-                              padding: EdgeInsets.symmetric(horizontal: 16),
+                              padding: const EdgeInsets.symmetric(horizontal: 16),
                               child: Text(
                                 '${index + 1}',
                                 style: TextStyle(
@@ -113,17 +113,17 @@ class _PaginateState extends State<Paginate> {
                               )),
                         );
                       })),
-              SizedBox(width: 8),
+              const SizedBox(width: 8),
               CircleAvatar(
                   backgroundColor: selectedPage == maxPage
                       ? Colors.grey
                       : ColorPalette.primaryColor,
                   child: IconButton(
                       onPressed: goToNextPage,
-                      icon: Icon(Icons.keyboard_arrow_right_rounded))),
+                      icon: const Icon(Icons.keyboard_arrow_right_rounded))),
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Obx(() {
             return Text(
                 'showing ${taskController.tasks.length} results of ${taskController.totalResults}');

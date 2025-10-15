@@ -309,7 +309,7 @@ class ApiConnectionTest {
     
     // Show loading dialog
     Get.dialog(
-      AlertDialog(
+      const AlertDialog(
         title: Text("Testing API Connections"),
         content: Column(
           mainAxisSize: MainAxisSize.min,
@@ -338,8 +338,8 @@ class ApiConnectionTest {
               results['success'] ? Icons.check_circle : Icons.error,
               color: results['success'] ? Colors.green : Colors.red,
             ),
-            SizedBox(width: 8),
-            Text("API Test Results"),
+            const SizedBox(width: 8),
+            const Text("API Test Results"),
           ],
         ),
         content: SingleChildScrollView(
@@ -347,35 +347,35 @@ class ApiConnectionTest {
             mainAxisSize: MainAxisSize.min,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
+              const Text(
                 "Active Server:",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Text(results['activeUrl'] ?? 'None'),
-              SizedBox(height: 16),
-              Text(
+              const SizedBox(height: 16),
+              const Text(
                 "Summary:",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Text(results['summary']),
-              SizedBox(height: 16),
-              Text(
+              const SizedBox(height: 16),
+              const Text(
                 "Success Rate:",
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               Text("${results['successRate'].toStringAsFixed(1)}%"),
               if (results['errors'].isNotEmpty) ...[
-                SizedBox(height: 16),
-                Text(
+                const SizedBox(height: 16),
+                const Text(
                   "Failed Endpoints:",
                   style: TextStyle(fontWeight: FontWeight.bold, color: Colors.red),
                 ),
                 ...results['errors'].entries.map((e) => 
                   Padding(
-                    padding: EdgeInsets.only(left: 8, top: 4),
+                    padding: const EdgeInsets.only(left: 8, top: 4),
                     child: Text(
                       "• ${e.key}",
-                      style: TextStyle(fontSize: 12),
+                      style: const TextStyle(fontSize: 12),
                     ),
                   )
                 ),
@@ -386,7 +386,7 @@ class ApiConnectionTest {
         actions: [
           TextButton(
             onPressed: () => Get.back(),
-            child: Text("Close"),
+            child: const Text("Close"),
           ),
           if (!results['success'])
             TextButton(
@@ -394,7 +394,7 @@ class ApiConnectionTest {
                 Get.back();
                 showTestResults(context);
               },
-              child: Text("Retry"),
+              child: const Text("Retry"),
             ),
         ],
       ),

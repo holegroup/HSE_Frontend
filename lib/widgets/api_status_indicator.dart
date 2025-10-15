@@ -9,10 +9,10 @@ class ApiStatusIndicator extends StatefulWidget {
   final bool floatingStyle;
   
   const ApiStatusIndicator({
-    Key? key, 
+    super.key, 
     this.showDetails = false,
     this.floatingStyle = false,
-  }) : super(key: key);
+  });
 
   @override
   _ApiStatusIndicatorState createState() => _ApiStatusIndicatorState();
@@ -30,7 +30,7 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
     super.initState();
     checkConnection();
     // Check connection every 30 seconds
-    _timer = Timer.periodic(Duration(seconds: 30), (timer) {
+    _timer = Timer.periodic(const Duration(seconds: 30), (timer) {
       checkConnection();
     });
   }
@@ -53,7 +53,7 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
       final primaryUrl = Constants.baseUrl;
       final response = await http.get(
         Uri.parse("$primaryUrl/api/health"),
-      ).timeout(Duration(seconds: 3));
+      ).timeout(const Duration(seconds: 3));
       
       if (response.statusCode == 200) {
         setState(() {
@@ -67,10 +67,10 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
     } catch (e) {
       // Try fallback URLs
       try {
-        final fallbackUrl = Constants.fallbackUrl;
+        const fallbackUrl = Constants.fallbackUrl;
         final response = await http.get(
           Uri.parse("$fallbackUrl/api/health"),
-        ).timeout(Duration(seconds: 3));
+        ).timeout(const Duration(seconds: 3));
         
         if (response.statusCode == 200) {
           setState(() {
@@ -113,7 +113,7 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
         onTap: () => _showConnectionDetails(context),
         borderRadius: BorderRadius.circular(20),
         child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
           decoration: BoxDecoration(
             color: isConnected ? Colors.green : Colors.red,
             borderRadius: BorderRadius.circular(20),
@@ -122,7 +122,7 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
             mainAxisSize: MainAxisSize.min,
             children: [
               if (isChecking)
-                SizedBox(
+                const SizedBox(
                   width: 12,
                   height: 12,
                   child: CircularProgressIndicator(
@@ -136,10 +136,10 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
                   size: 16,
                   color: Colors.white,
                 ),
-              SizedBox(width: 6),
+              const SizedBox(width: 6),
               Text(
                 isConnected ? 'API Connected' : 'API Offline',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.white,
                   fontSize: 12,
                   fontWeight: FontWeight.bold,
@@ -156,7 +156,7 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
     return InkWell(
       onTap: widget.showDetails ? null : () => _showConnectionDetails(context),
       child: Container(
-        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         decoration: BoxDecoration(
           color: isConnected 
             ? Colors.green.withOpacity(0.1) 
@@ -187,7 +187,7 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
                 size: 18,
                 color: isConnected ? Colors.green : Colors.red,
               ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
@@ -201,12 +201,12 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
                   ),
                 ),
                 if (widget.showDetails) ...[
-                  SizedBox(height: 2),
+                  const SizedBox(height: 2),
                   Text(
                     isConnected 
                       ? activeUrl.replaceAll('http://', '').replaceAll('https://', '')
                       : errorMessage,
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.grey,
                       fontSize: 11,
                     ),
@@ -215,8 +215,8 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
               ],
             ),
             if (!widget.showDetails) ...[
-              SizedBox(width: 8),
-              Icon(
+              const SizedBox(width: 8),
+              const Icon(
                 Icons.info_outline,
                 size: 14,
                 color: Colors.grey,
@@ -238,8 +238,8 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
               isConnected ? Icons.check_circle : Icons.error,
               color: isConnected ? Colors.green : Colors.red,
             ),
-            SizedBox(width: 8),
-            Text('API Connection Status'),
+            const SizedBox(width: 8),
+            const Text('API Connection Status'),
           ],
         ),
         content: Column(
@@ -252,19 +252,19 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
             _buildDetailRow('Fallback URL:', Constants.fallbackUrl),
             if (!isConnected)
               _buildDetailRow('Error:', errorMessage),
-            SizedBox(height: 16),
-            Text(
+            const SizedBox(height: 16),
+            const Text(
               'Tips:',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             if (!isConnected) ...[
-              Text('• Ensure backend server is running', style: TextStyle(fontSize: 12)),
-              Text('• Check network connection', style: TextStyle(fontSize: 12)),
-              Text('• Verify firewall settings', style: TextStyle(fontSize: 12)),
+              const Text('• Ensure backend server is running', style: TextStyle(fontSize: 12)),
+              const Text('• Check network connection', style: TextStyle(fontSize: 12)),
+              const Text('• Verify firewall settings', style: TextStyle(fontSize: 12)),
             ] else ...[
-              Text('• Connection is stable', style: TextStyle(fontSize: 12)),
-              Text('• All API endpoints available', style: TextStyle(fontSize: 12)),
+              const Text('• Connection is stable', style: TextStyle(fontSize: 12)),
+              const Text('• All API endpoints available', style: TextStyle(fontSize: 12)),
             ],
           ],
         ),
@@ -274,15 +274,15 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
               Navigator.of(context).pop();
               checkConnection();
             },
-            child: Text('Refresh'),
+            child: const Text('Refresh'),
           ),
           TextButton(
             onPressed: () => Get.toNamed('/api-test'),
-            child: Text('Full Test'),
+            child: const Text('Full Test'),
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: Text('Close'),
+            child: const Text('Close'),
           ),
         ],
       ),
@@ -291,7 +291,7 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
   
   Widget _buildDetailRow(String label, String value) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(vertical: 4),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -299,7 +299,7 @@ class _ApiStatusIndicatorState extends State<ApiStatusIndicator> {
             width: 100,
             child: Text(
               label,
-              style: TextStyle(
+              style: const TextStyle(
                 fontWeight: FontWeight.w500,
                 fontSize: 13,
               ),
@@ -328,14 +328,14 @@ class ApiConnectionHelper {
     try {
       final response = await http.get(
         Uri.parse("${Constants.baseUrl}/api/health"),
-      ).timeout(Duration(seconds: 3));
+      ).timeout(const Duration(seconds: 3));
       return response.statusCode == 200;
     } catch (e) {
       // Try fallback
       try {
         final response = await http.get(
           Uri.parse("${Constants.fallbackUrl}/api/health"),
-        ).timeout(Duration(seconds: 3));
+        ).timeout(const Duration(seconds: 3));
         return response.statusCode == 200;
       } catch (e) {
         return false;
@@ -347,7 +347,7 @@ class ApiConnectionHelper {
     try {
       final response = await http.get(
         Uri.parse("${Constants.baseUrl}/api/health"),
-      ).timeout(Duration(seconds: 3));
+      ).timeout(const Duration(seconds: 3));
       if (response.statusCode == 200) {
         return Constants.baseUrl;
       }
@@ -355,7 +355,7 @@ class ApiConnectionHelper {
       try {
         final response = await http.get(
           Uri.parse("${Constants.fallbackUrl}/api/health"),
-        ).timeout(Duration(seconds: 3));
+        ).timeout(const Duration(seconds: 3));
         if (response.statusCode == 200) {
           return Constants.fallbackUrl;
         }
@@ -373,10 +373,10 @@ class ApiConnectionHelper {
       backgroundColor: Colors.red,
       colorText: Colors.white,
       snackPosition: SnackPosition.BOTTOM,
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
       mainButton: TextButton(
         onPressed: () => Get.toNamed('/api-test'),
-        child: Text('Test', style: TextStyle(color: Colors.white)),
+        child: const Text('Test', style: TextStyle(color: Colors.white)),
       ),
     );
   }

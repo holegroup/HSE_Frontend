@@ -69,7 +69,7 @@ class _TableDataState extends State<TableData> {
         title: Text(
           '${startDate != null ? DateFormat("MM-dd-yyyy").format(startDate!) : "Select start date"} - \n'
           '${endDate != null ? DateFormat("MM-dd-yyyy").format(endDate!) : "Select end date"}',
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 14,
             fontWeight: FontWeight.normal,
           ),
@@ -137,7 +137,7 @@ class _TableDataState extends State<TableData> {
                       size: 64,
                       color: Colors.grey[400],
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(
                       "No Task Data Available",
                       style: TextStyle(
@@ -146,7 +146,7 @@ class _TableDataState extends State<TableData> {
                         color: Colors.grey[600],
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     Text(
                       startDate != null || endDate != null
                           ? "No tasks found for the selected date range"
@@ -157,25 +157,25 @@ class _TableDataState extends State<TableData> {
                       ),
                       textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         ElevatedButton.icon(
                           onPressed: () => _selectDate(context, true),
-                          icon: Icon(Icons.calendar_today),
-                          label: Text("Start Date"),
+                          icon: const Icon(Icons.calendar_today),
+                          label: const Text("Start Date"),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         ElevatedButton.icon(
                           onPressed: () => _selectDate(context, false),
-                          icon: Icon(Icons.calendar_today_outlined),
-                          label: Text("End Date"),
+                          icon: const Icon(Icons.calendar_today_outlined),
+                          label: const Text("End Date"),
                         ),
                       ],
                     ),
                     if (startDate != null || endDate != null) ...[
-                      SizedBox(height: 12),
+                      const SizedBox(height: 12),
                       TextButton.icon(
                         onPressed: () {
                           setState(() {
@@ -186,8 +186,8 @@ class _TableDataState extends State<TableData> {
                           });
                           tableDataController.getData();
                         },
-                        icon: Icon(Icons.clear),
-                        label: Text("Clear Dates"),
+                        icon: const Icon(Icons.clear),
+                        label: const Text("Clear Dates"),
                       ),
                     ],
                   ],

@@ -22,11 +22,11 @@ class AllTasks extends StatelessWidget {
           onPressed: () {
             Get.back();
           },
-          icon: Icon(Icons.arrow_back_ios_new_rounded),
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
         ),
-        surfaceTintColor: Color.fromARGB(255, 213, 219, 223),
-        backgroundColor: Color.fromARGB(255, 213, 219, 223),
-        title: Text("All Tasks"),
+        surfaceTintColor: const Color.fromARGB(255, 213, 219, 223),
+        backgroundColor: const Color.fromARGB(255, 213, 219, 223),
+        title: const Text("All Tasks"),
       ),
       body: RefreshIndicator(
         onRefresh: _refreshData,
@@ -232,17 +232,17 @@ class AllTasks extends StatelessWidget {
                             ? Positioned(
                                 right: 0,
                                 child: Container(
-                                  margin: EdgeInsets.all(8),
-                                  padding: EdgeInsets.symmetric(
+                                  margin: const EdgeInsets.all(8),
+                                  padding: const EdgeInsets.symmetric(
                                       vertical: 4, horizontal: 8),
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                     color: Colors.red,
                                     borderRadius: BorderRadius.only(
                                       bottomLeft: Radius.circular(10),
                                       topRight: Radius.circular(12),
                                     ),
                                   ),
-                                  child: Row(
+                                  child: const Row(
                                     children: [
                                       Text(
                                         "Critical Task",
@@ -262,17 +262,17 @@ class AllTasks extends StatelessWidget {
                                   ),
                                 ),
                               )
-                            : SizedBox(),
+                            : const SizedBox(),
                       ],
                     );
                   },
                 );
               }),
-              SizedBox(
+              const SizedBox(
                 height: 150,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 80),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 80),
                 child: Paginate(),
               ),
             ],

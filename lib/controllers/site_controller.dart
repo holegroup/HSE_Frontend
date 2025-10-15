@@ -99,66 +99,66 @@ class SiteController extends GetxController {
             return Obx(() => SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 16),
-                    Text("Add a New Site", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
+                    const Text("Add a New Site", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 16),
                     TextField(
                       controller: siteNameController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Site Name',
                         border: OutlineInputBorder(),
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     TextField(
                       controller: addressController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Address',
                         border: OutlineInputBorder(),
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     TextField(
                       controller: cityController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'City',
                         border: OutlineInputBorder(),
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     TextField(
                       controller: stateController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'State',
                         border: OutlineInputBorder(),
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     TextField(
                       controller: countryController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Country',
                         border: OutlineInputBorder(),
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     TextField(
                       controller: zipCodeController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Zip-code',
                         border: OutlineInputBorder(),
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     if (message.value.isNotEmpty)
                       Container(
-                        padding: EdgeInsets.all(8),
-                        margin: EdgeInsets.only(bottom: 16),
+                        padding: const EdgeInsets.all(8),
+                        margin: const EdgeInsets.only(bottom: 16),
                         decoration: BoxDecoration(
                           color: message.value.contains('Success') ? Colors.green.shade100 : Colors.red.shade100,
                           borderRadius: BorderRadius.circular(8),
@@ -178,10 +178,10 @@ class SiteController extends GetxController {
                             onPressed: isLoading.value ? null : () {
                               Get.back();
                             },
-                            child: Text('Cancel'),
+                            child: const Text('Cancel'),
                           ),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: ElevatedButton(
                             onPressed: isLoading.value ? null : () async {
@@ -218,7 +218,7 @@ class SiteController extends GetxController {
 
                                 // Make HTTP POST request
                                 final response = await http.post(
-                                  Uri.parse('${baseUrl}/api/sites/create-site'),
+                                  Uri.parse('$baseUrl/api/sites/create-site'),
                                   headers: {
                                     'Content-Type': 'application/json',
                                   },
@@ -241,7 +241,7 @@ class SiteController extends GetxController {
                                   await fetchAllSites();
                                   
                                   // Close bottom sheet after a delay
-                                  Future.delayed(Duration(seconds: 2), () {
+                                  Future.delayed(const Duration(seconds: 2), () {
                                     Get.back();
                                   });
                                 } else {
@@ -254,7 +254,7 @@ class SiteController extends GetxController {
                               }
                             },
                             child: isLoading.value
-                                ? SizedBox(
+                                ? const SizedBox(
                                     height: 20,
                                     width: 20,
                                     child: CircularProgressIndicator(
@@ -262,12 +262,12 @@ class SiteController extends GetxController {
                                       color: Colors.white,
                                     ),
                                   )
-                                : Text('Create Site'),
+                                : const Text('Create Site'),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                   ],
                 ),
               ),
@@ -294,46 +294,46 @@ class SiteController extends GetxController {
             return Obx(() => SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 16),
-                    Text("Add a New Product", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
+                    const Text("Add a New Product", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 16),
                     TextField(
                       controller: equipNameController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Equipment Name',
                         border: OutlineInputBorder(),
                         hintText: 'e.g., Excavator, Crane, etc.',
                       ),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     TextField(
                       controller: descriptionController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Description (Optional)',
                         border: OutlineInputBorder(),
                         hintText: 'Brief description of the equipment',
                       ),
                       maxLines: 2,
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     TextField(
                       controller: actualEquipIdController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         labelText: 'Equipment ID',
                         border: OutlineInputBorder(),
                         hintText: 'Unique equipment identifier',
                       ),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     if (message.value.isNotEmpty)
                       Container(
-                        padding: EdgeInsets.all(8),
-                        margin: EdgeInsets.only(bottom: 16),
+                        padding: const EdgeInsets.all(8),
+                        margin: const EdgeInsets.only(bottom: 16),
                         decoration: BoxDecoration(
                           color: message.value.contains('Success') ? Colors.green.shade100 : Colors.red.shade100,
                           borderRadius: BorderRadius.circular(8),
@@ -353,10 +353,10 @@ class SiteController extends GetxController {
                             onPressed: isLoading.value ? null : () {
                               Get.back();
                             },
-                            child: Text('Cancel'),
+                            child: const Text('Cancel'),
                           ),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: ElevatedButton(
                             onPressed: isLoading.value ? null : () async {
@@ -383,7 +383,7 @@ class SiteController extends GetxController {
 
                                 // Make HTTP POST request
                                 final response = await http.post(
-                                  Uri.parse('${baseUrl}/api/products/create-product'),
+                                  Uri.parse('$baseUrl/api/products/create-product'),
                                   headers: {
                                     'Content-Type': 'application/json',
                                   },
@@ -400,7 +400,7 @@ class SiteController extends GetxController {
                                   actualEquipIdController.clear();
                                   
                                   // Close bottom sheet after a delay
-                                  Future.delayed(Duration(seconds: 2), () {
+                                  Future.delayed(const Duration(seconds: 2), () {
                                     Get.back();
                                   });
                                 } else {
@@ -413,7 +413,7 @@ class SiteController extends GetxController {
                               }
                             },
                             child: isLoading.value
-                                ? SizedBox(
+                                ? const SizedBox(
                                     height: 20,
                                     width: 20,
                                     child: CircularProgressIndicator(
@@ -421,12 +421,12 @@ class SiteController extends GetxController {
                                       color: Colors.white,
                                     ),
                                   )
-                                : Text('Create Product'),
+                                : const Text('Create Product'),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                   ],
                 ),
               ),
@@ -447,26 +447,26 @@ class SiteController extends GetxController {
           onClosing: () {},
           builder: (BuildContext context) {
             return Container(
-              padding: EdgeInsets.all(20),
+              padding: const EdgeInsets.all(20),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: 16),
-                  Text("Send Request to add Part"),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
+                  const Text("Send Request to add Part"),
+                  const SizedBox(height: 16),
                   TextField(
                     controller: partNameController,
-                    decoration: InputDecoration(labelText: 'Part Name'),
+                    decoration: const InputDecoration(labelText: 'Part Name'),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     height: 8,
                   ),
                   TextField(
                     controller: partNumberController,
-                    decoration: InputDecoration(labelText: 'Part Number'),
+                    decoration: const InputDecoration(labelText: 'Part Number'),
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -476,10 +476,10 @@ class SiteController extends GetxController {
                             // Handle button 1 press
                             Get.back();
                           },
-                          child: Text('Cancel'),
+                          child: const Text('Cancel'),
                         ),
                       ),
-                      SizedBox(width: 8),
+                      const SizedBox(width: 8),
                       Expanded(
                         child: ElevatedButton(
                           onPressed: () async {
@@ -503,10 +503,10 @@ class SiteController extends GetxController {
                               // HTTP PUT request
                               final response = await http.post(
                                 Uri.parse(
-                                    '${baseUrl}/api/sites/add-parts-items'),
+                                    '$baseUrl/api/sites/add-parts-items'),
                                 headers: {
                                   'Content-Type': 'application/json',
-                                  'Authorization': 'Bearer ${token}',
+                                  'Authorization': 'Bearer $token',
                                 },
                                 body: jsonEncode({
                                   'productId': productId,
@@ -546,12 +546,12 @@ class SiteController extends GetxController {
                               print(isLoadingGlobal.value);
                             }
                           },
-                          child: Text('Done'),
+                          child: const Text('Done'),
                         ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 16),
+                  const SizedBox(height: 16),
                 ],
               ),
             );
@@ -576,26 +576,26 @@ class SiteController extends GetxController {
         onClosing: () {},
         builder: (BuildContext context) {
           return Obx(() => Container(
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 16),
-                    Text("Send Request to add Item"),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
+                    const Text("Send Request to add Item"),
+                    const SizedBox(height: 16),
                     TextField(
                       controller: itemNameController,
-                      decoration: InputDecoration(labelText: 'Item Name'),
+                      decoration: const InputDecoration(labelText: 'Item Name'),
                     ),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     TextField(
                       controller: serialNumberController,
-                      decoration: InputDecoration(labelText: 'Serial Number'),
+                      decoration: const InputDecoration(labelText: 'Serial Number'),
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Text(message.value),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceAround,
                       children: [
@@ -604,10 +604,10 @@ class SiteController extends GetxController {
                             onPressed: () {
                               Get.back();
                             },
-                            child: Text('Cancel'),
+                            child: const Text('Cancel'),
                           ),
                         ),
-                        SizedBox(width: 8),
+                        const SizedBox(width: 8),
                         Expanded(
                           child: ElevatedButton(
                             onPressed: isLoading.value
@@ -634,10 +634,10 @@ class SiteController extends GetxController {
                                       print("API started");
                                       final response = await http.post(
                                         Uri.parse(
-                                            '${baseUrl}/api/sites/add-items-site'),
+                                            '$baseUrl/api/sites/add-items-site'),
                                         headers: {
                                           'Content-Type': 'application/json',
-                                          'Authorization': 'Bearer ${token}',
+                                          'Authorization': 'Bearer $token',
                                         },
                                         body: jsonEncode({
                                           'siteId': SiteId,
@@ -659,7 +659,7 @@ class SiteController extends GetxController {
                                     }
                                   },
                             child: isLoading.value
-                                ? SizedBox(
+                                ? const SizedBox(
                                     height: 20,
                                     width: 20,
                                     child: CircularProgressIndicator(
@@ -667,12 +667,12 @@ class SiteController extends GetxController {
                                       color: Colors.white,
                                     ),
                                   )
-                                : Text('Done'),
+                                : const Text('Done'),
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                   ],
                 ),
               ));

@@ -130,7 +130,7 @@ class SignupController extends GetxController {
           data['message'] ?? "Account created successfully!",
           backgroundColor: Colors.green.shade100,
           colorText: Colors.green.shade900,
-          duration: Duration(seconds: 4),
+          duration: const Duration(seconds: 4),
         );
         
         // Clear form
@@ -141,7 +141,7 @@ class SignupController extends GetxController {
         selectedRole.value = 'inspector'; // Reset to default
         
         // Navigate to login after a short delay
-        Future.delayed(Duration(seconds: 1), () {
+        Future.delayed(const Duration(seconds: 1), () {
           Get.offNamed('/login');
         });
       } else if (response.statusCode == 400) {
@@ -150,7 +150,7 @@ class SignupController extends GetxController {
           data['message'] ?? "User already exists or invalid data",
           backgroundColor: Colors.orange.shade100,
           colorText: Colors.orange.shade900,
-          duration: Duration(seconds: 4),
+          duration: const Duration(seconds: 4),
         );
       } else {
         Get.snackbar(
@@ -158,7 +158,7 @@ class SignupController extends GetxController {
           data['message'] ?? "An error occurred during registration",
           backgroundColor: Colors.red.shade100,
           colorText: Colors.red.shade900,
-          duration: Duration(seconds: 4),
+          duration: const Duration(seconds: 4),
         );
       }
     } catch (e) {
@@ -170,7 +170,7 @@ class SignupController extends GetxController {
           "Server is taking too long to respond. Please try again.",
           backgroundColor: Colors.red.shade100,
           colorText: Colors.red.shade900,
-          duration: Duration(seconds: 4),
+          duration: const Duration(seconds: 4),
         );
       } else {
         Get.snackbar(
@@ -178,7 +178,7 @@ class SignupController extends GetxController {
           "Unable to create account. Please check your connection and try again.",
           backgroundColor: Colors.red.shade100,
           colorText: Colors.red.shade900,
-          duration: Duration(seconds: 4),
+          duration: const Duration(seconds: 4),
         );
       }
     } finally {

@@ -50,9 +50,9 @@ class TaskController extends GetxController {
         throw Exception("Token is null or empty. Authentication failed.");
       }
 
-      String url = "$baseUrl/api/tasks/get-task?pages=${pageNumber}";
+      String url = "$baseUrl/api/tasks/get-task?pages=$pageNumber";
       if (user!['role'] == 'supervisor') {
-        url = "$baseUrl/api/tasks/get-task-supervisor?pages=${pageNumber}";
+        url = "$baseUrl/api/tasks/get-task-supervisor?pages=$pageNumber";
       }
 
       // Make the HTTP GET request
@@ -181,7 +181,7 @@ class TaskController extends GetxController {
   Future<void> deleteTask({
     required String taskId,
   }) async {
-    final String url = "$baseUrl/api/tasks/delete-task?taskId=${taskId}";
+    final String url = "$baseUrl/api/tasks/delete-task?taskId=$taskId";
     try {
       final response = await http.delete(
         Uri.parse(url),

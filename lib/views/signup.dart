@@ -4,8 +4,21 @@ import 'package:hole_hse_inspection/config/color.palate.dart';
 import 'package:hole_hse_inspection/controllers/signup_controller.dart';
 import 'package:hole_hse_inspection/widgets/role_selector_widget.dart';
 
-class SignupPage extends StatelessWidget {
-  final SignupController controller = Get.put(SignupController());
+class SignupPage extends StatefulWidget {
+  const SignupPage({super.key});
+
+  @override
+  State<SignupPage> createState() => _SignupPageState();
+}
+
+class _SignupPageState extends State<SignupPage> {
+  late final SignupController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = Get.put(SignupController());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +30,7 @@ class SignupPage extends StatelessWidget {
           Container(
             height: double.infinity,
             width: double.infinity,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 fit: BoxFit.cover,
                 opacity: 0.35,
@@ -40,7 +53,7 @@ class SignupPage extends StatelessWidget {
                     Align(
                       alignment: Alignment.centerLeft,
                       child: IconButton(
-                        icon: Icon(Icons.arrow_back, color: ColorPalette.primaryColor),
+                        icon: const Icon(Icons.arrow_back, color: ColorPalette.primaryColor),
                         onPressed: () => Get.back(),
                       ),
                     ),
@@ -172,9 +185,9 @@ class SignupPage extends StatelessWidget {
                           ColorPalette.primaryColor.withOpacity(0.6),
                       ),
                       child: controller.isLoading.value
-                          ? Row(
+                          ? const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
+                              children: [
                                 SizedBox(
                                   width: 20,
                                   height: 20,
@@ -214,7 +227,7 @@ class SignupPage extends StatelessWidget {
                         ),
                         GestureDetector(
                           onTap: () => Get.back(),
-                          child: Text(
+                          child: const Text(
                             'Log In',
                             style: TextStyle(
                               color: ColorPalette.primaryColor,

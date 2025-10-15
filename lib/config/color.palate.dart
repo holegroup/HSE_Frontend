@@ -14,7 +14,7 @@ ThemeData buildTheme() {
   return ThemeData(
     scaffoldBackgroundColor: ColorPalette.scaffoldColor,
     primaryColor: ColorPalette.primaryColor,
-    colorScheme: ColorScheme.light(
+    colorScheme: const ColorScheme.light(
       primary: ColorPalette.primaryColor,
       secondary: ColorPalette.light2,
       surface: ColorPalette.light1,
@@ -22,7 +22,7 @@ ThemeData buildTheme() {
       onSecondary: ColorPalette.dark1,
       onSurface: ColorPalette.dark1,
     ),
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: ColorPalette.scaffoldColor,
       titleTextStyle: TextStyle(
         color: ColorPalette.dark2,
@@ -38,20 +38,20 @@ ThemeData buildTheme() {
       fillColor: ColorPalette.light1,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: ColorPalette.light2),
+        borderSide: const BorderSide(color: ColorPalette.light2),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: ColorPalette.primaryColor, width: 2),
+        borderSide: const BorderSide(color: ColorPalette.primaryColor, width: 2),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(8),
-        borderSide: BorderSide(color: ColorPalette.light2),
+        borderSide: const BorderSide(color: ColorPalette.light2),
       ),
-      hintStyle: TextStyle(color: ColorPalette.light2),
-      labelStyle: TextStyle(color: ColorPalette.dark1),
+      hintStyle: const TextStyle(color: ColorPalette.light2),
+      labelStyle: const TextStyle(color: ColorPalette.dark1),
     ),
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
         // headline1: TextStyle(
         //   fontSize: 32,
         //   fontWeight: FontWeight.bold,
@@ -83,8 +83,8 @@ ThemeData buildTheme() {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
       ),
     ),
-    iconTheme: IconThemeData(color: ColorPalette.dark1),
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
+    iconTheme: const IconThemeData(color: ColorPalette.dark1),
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: ColorPalette.primaryColor,
       foregroundColor: Colors.white,
     ),
@@ -93,8 +93,8 @@ ThemeData buildTheme() {
       backgroundColor: ColorPalette.light1,
       selectedColor: ColorPalette.primaryColor,
       secondarySelectedColor: ColorPalette.primaryColor.withOpacity(0.7),
-      labelStyle: TextStyle(color: ColorPalette.dark1),
-      secondaryLabelStyle: TextStyle(color: Colors.white),
+      labelStyle: const TextStyle(color: ColorPalette.dark1),
+      secondaryLabelStyle: const TextStyle(color: Colors.white),
       brightness: Brightness.light,
     ),
   );

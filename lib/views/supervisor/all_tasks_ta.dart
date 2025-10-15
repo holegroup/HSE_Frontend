@@ -22,11 +22,11 @@ class AllTasksTa extends StatelessWidget {
           onPressed: () {
             Get.back();
           },
-          icon: Icon(Icons.arrow_back_ios_new_rounded),
+          icon: const Icon(Icons.arrow_back_ios_new_rounded),
         ),
-        surfaceTintColor: Color.fromARGB(255, 213, 219, 223),
-        backgroundColor: Color.fromARGB(255, 213, 219, 223),
-        title: Text("All Tasks"),
+        surfaceTintColor: const Color.fromARGB(255, 213, 219, 223),
+        backgroundColor: const Color.fromARGB(255, 213, 219, 223),
+        title: const Text("All Tasks"),
       ),
       body: RefreshIndicator(
         onRefresh: _refreshData,
@@ -101,8 +101,8 @@ class AllTasksTa extends StatelessWidget {
                         children: [
                           Row(
                             children: [
-                              Padding(
-                                padding: const EdgeInsets.all(8.0),
+                              const Padding(
+                                padding: EdgeInsets.all(8.0),
                                 child: CircleAvatar(
                                   backgroundColor: ColorPalette.light2,
                                   child: Icon(Icons.person),
@@ -114,7 +114,7 @@ class AllTasksTa extends StatelessWidget {
                                   Text(
                                     task['inspector_name'],
                                     style:
-                                        TextStyle(fontWeight: FontWeight.w600),
+                                        const TextStyle(fontWeight: FontWeight.w600),
                                   ),
                                   Text(task['email']),
                                 ],
@@ -204,7 +204,7 @@ class AllTasksTa extends StatelessWidget {
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 16),
                                   ),
-                                  child: Text(
+                                  child: const Text(
                                     "Delete Task",
                                     style: TextStyle(color: ColorPalette.dark2),
                                   ),
@@ -241,11 +241,11 @@ class AllTasksTa extends StatelessWidget {
                   },
                 );
               }),
-              SizedBox(
+              const SizedBox(
                 height: 150,
               ),
-              Padding(
-                padding: const EdgeInsets.symmetric(vertical: 80),
+              const Padding(
+                padding: EdgeInsets.symmetric(vertical: 80),
                 child: Paginate(),
               ),
             ],

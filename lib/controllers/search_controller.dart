@@ -32,7 +32,7 @@ class SearchWidgetController extends GetxController {
 
   // Load initial products when search widget becomes visible
   Future<void> loadInitialProducts() async {
-    final String url = "${baseUrl}/api/products/fetch-all-products";
+    final String url = "$baseUrl/api/products/fetch-all-products";
     
     try {
       isLoading.value = true;
@@ -101,7 +101,7 @@ class SearchWidgetController extends GetxController {
     }
 
     final String url =
-        "${baseUrl}/api/products/search-products?query=${searchController.text}";
+        "$baseUrl/api/products/search-products?query=${searchController.text}";
 
     try {
       isLoading.value = true;

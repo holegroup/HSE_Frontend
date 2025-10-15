@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
 import '../config/app_config.dart';
-import '../config/env.dart';
 
 class EnvironmentSwitcher extends StatefulWidget {
+  const EnvironmentSwitcher({super.key});
+
   @override
   _EnvironmentSwitcherState createState() => _EnvironmentSwitcherState();
 }
@@ -13,14 +14,14 @@ class _EnvironmentSwitcherState extends State<EnvironmentSwitcher> {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(16),
+      margin: const EdgeInsets.all(16),
       child: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisSize: MainAxisSize.min,
           children: [
-            Row(
+            const Row(
               children: [
                 Icon(Icons.settings, color: Colors.blue),
                 SizedBox(width: 8),
@@ -33,21 +34,21 @@ class _EnvironmentSwitcherState extends State<EnvironmentSwitcher> {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             
             // Current Configuration
             _buildInfoRow('Current Environment:', AppConfig.environment.toString()),
             _buildInfoRow('Base URL:', AppConfig.baseUrl),
             _buildInfoRow('Timeout:', '${AppConfig.apiTimeout}ms'),
             
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             
             // Environment Switcher
-            Text(
+            const Text(
               'Switch Environment:',
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             
             Row(
               children: [
@@ -57,45 +58,45 @@ class _EnvironmentSwitcherState extends State<EnvironmentSwitcher> {
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppConfig.isDevelopment ? Colors.green : Colors.grey,
                     ),
-                    child: Text('Local'),
+                    child: const Text('Local'),
                   ),
                 ),
-                SizedBox(width: 8),
+                const SizedBox(width: 8),
                 Expanded(
                   child: ElevatedButton(
                     onPressed: () => _switchEnvironment(Environment.production),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: AppConfig.isProduction ? Colors.green : Colors.grey,
                     ),
-                    child: Text('Live'),
+                    child: const Text('Live'),
                   ),
                 ),
               ],
             ),
             
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             
             // Test Connection Button
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
                 onPressed: _testConnection,
-                icon: Icon(Icons.network_check),
-                label: Text('Test Connection'),
+                icon: const Icon(Icons.network_check),
+                label: const Text('Test Connection'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
                 ),
               ),
             ),
             
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             
             // Quick URLs
-            Text(
+            const Text(
               'Quick Access:',
               style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             _buildUrlRow('Health Check:', '${AppConfig.baseUrl}/api/health'),
             _buildUrlRow('API Info:', '${AppConfig.baseUrl}/api'),
           ],
@@ -106,7 +107,7 @@ class _EnvironmentSwitcherState extends State<EnvironmentSwitcher> {
   
   Widget _buildInfoRow(String label, String value) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 2),
+      padding: const EdgeInsets.symmetric(vertical: 2),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -114,13 +115,13 @@ class _EnvironmentSwitcherState extends State<EnvironmentSwitcher> {
             width: 100,
             child: Text(
               label,
-              style: TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
+              style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 12),
             ),
           ),
           Expanded(
             child: Text(
               value,
-              style: TextStyle(fontSize: 12),
+              style: const TextStyle(fontSize: 12),
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -131,18 +132,18 @@ class _EnvironmentSwitcherState extends State<EnvironmentSwitcher> {
   
   Widget _buildUrlRow(String label, String url) {
     return Padding(
-      padding: EdgeInsets.symmetric(vertical: 1),
+      padding: const EdgeInsets.symmetric(vertical: 1),
       child: Row(
         children: [
           Text(
             label,
-            style: TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
+            style: const TextStyle(fontSize: 10, fontWeight: FontWeight.w500),
           ),
-          SizedBox(width: 4),
+          const SizedBox(width: 4),
           Expanded(
             child: Text(
               url,
-              style: TextStyle(fontSize: 10, color: Colors.blue),
+              style: const TextStyle(fontSize: 10, color: Colors.blue),
               overflow: TextOverflow.ellipsis,
             ),
           ),
@@ -162,19 +163,19 @@ class _EnvironmentSwitcherState extends State<EnvironmentSwitcher> {
       snackPosition: SnackPosition.BOTTOM,
       backgroundColor: Colors.green,
       colorText: Colors.white,
-      duration: Duration(seconds: 2),
+      duration: const Duration(seconds: 2),
     );
   }
   
   void _testConnection() async {
     Get.dialog(
       AlertDialog(
-        title: Text('Testing Connection'),
+        title: const Text('Testing Connection'),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            CircularProgressIndicator(),
-            SizedBox(height: 16),
+            const CircularProgressIndicator(),
+            const SizedBox(height: 16),
             Text('Testing ${AppConfig.baseUrl}...'),
           ],
         ),
@@ -185,7 +186,7 @@ class _EnvironmentSwitcherState extends State<EnvironmentSwitcher> {
     try {
       final response = await http.get(
         Uri.parse('${AppConfig.baseUrl}/api/health'),
-      ).timeout(Duration(seconds: 5));
+      ).timeout(const Duration(seconds: 5));
       
       Get.back(); // Close loading dialog
       

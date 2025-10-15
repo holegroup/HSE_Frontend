@@ -11,37 +11,37 @@ class CustomDrawerButton extends StatelessWidget {
     required this.icon,
     required this.label,
     required this.onPressed,
-    Key? key,
+    super.key,
     this.backgroundColor = Colors.black,
     this.centerText = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-        padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+        margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 15),
         width: double.maxFinite,
         decoration: BoxDecoration(
-          color: this.backgroundColor,
-          borderRadius: BorderRadius.all(Radius.circular(8)),
+          color: backgroundColor,
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
         ),
         child: Row(
-          mainAxisAlignment: this.centerText
+          mainAxisAlignment: centerText
               ? MainAxisAlignment.center
               : MainAxisAlignment.start,
           children: [
-            SizedBox(width: 15),
+            const SizedBox(width: 15),
             Icon(
               icon,
               color: Colors.white,
             ),
-            SizedBox(width: 20),
+            const SizedBox(width: 20),
             Text(
               label,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),

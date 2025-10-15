@@ -29,7 +29,7 @@ class UserSearchWidgetController extends GetxController {
 
   Future<void> search() async {
     final String url =
-        "${baseUrl}/api/users/search-users?query=${searchController.text}";
+        "$baseUrl/api/users/search-users?query=${searchController.text}";
 
     print(
         "search api called----------------------------------------------------------------");

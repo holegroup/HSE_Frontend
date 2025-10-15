@@ -15,17 +15,18 @@ import 'package:hole_hse_inspection/views/signup.dart';
 import 'package:hole_hse_inspection/views/forgot_password.dart';
 import 'package:hole_hse_inspection/views/api_test_page.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:flutter_web_plugins/flutter_web_plugins.dart';
-
+// Conditionally import web plugins
+import 'package:flutter/foundation.dart' show kIsWeb;
+import 'web_plugins.dart' if (dart.library.html) 'web_plugins_web.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  
-  // Configure URL strategy for web to remove hash from URLs
+
+  // Initialize platform-specific plugins
   if (kIsWeb) {
-    setUrlStrategy(PathUrlStrategy());
+    initializeWebPlugins();
   }
-  
+
   // Initialize Hive for web and mobile platforms differently
   if (kIsWeb) {
     // For web, use default Hive initialization
@@ -49,7 +50,7 @@ void main() async {
   try {
     var userBox = Hive.box('userBox');
     var userData = userBox.get('userData');
-    
+
     // Determine initial route based on stored data
     if (userData != null && userData['user'] != null) {
       if (userData['user']['role'] == "supervisor") {
@@ -68,14 +69,15 @@ void main() async {
   if (!kIsWeb) {
     try {
       SseService sseService = SseService();
-      
+
       if (Platform.isAndroid) {
         final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
             FlutterLocalNotificationsPlugin();
-        
+
         final AndroidFlutterLocalNotificationsPlugin? androidImplementation =
-            flutterLocalNotificationsPlugin.resolvePlatformSpecificImplementation<
-                AndroidFlutterLocalNotificationsPlugin>();
+            flutterLocalNotificationsPlugin
+                .resolvePlatformSpecificImplementation<
+                    AndroidFlutterLocalNotificationsPlugin>();
 
         if (androidImplementation != null) {
           await androidImplementation.requestNotificationsPermission();
@@ -86,10 +88,10 @@ void main() async {
       print('Error initializing platform services: $e');
     }
   }
-  
+
   runApp(MyApp(initialRoute: initialRoute));
 }
- 
+
 class MyApp extends StatelessWidget {
   final String initialRoute;
 
@@ -103,13 +105,15 @@ class MyApp extends StatelessWidget {
       initialRoute: initialRoute,
       theme: buildTheme(),
       getPages: [
-        GetPage(name: '/', page: () => HomePage()),
-        GetPage(name: '/supervisor-dashboard', page: () => SupervisorDashboard()),
+        GetPage(name: '/', page: () => const HomePage()),
+        GetPage(
+            name: '/supervisor-dashboard',
+            page: () => const SupervisorDashboard()),
         GetPage(name: '/camera', page: () => CameraView()),
         GetPage(name: '/login', page: () => Login()),
-        GetPage(name: '/signup', page: () => SignupPage()),
-        GetPage(name: '/forgot-password', page: () => ForgotPasswordPage()),
-        GetPage(name: '/api-test', page: () => ApiTestPage()),
+        GetPage(name: '/signup', page: () => const SignupPage()),
+        GetPage(name: '/forgot-password', page: () => const ForgotPasswordPage()),
+        GetPage(name: '/api-test', page: () => const ApiTestPage()),
       ],
     );
   }

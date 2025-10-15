@@ -32,8 +32,8 @@ class AppFooter extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(8),
-      decoration: BoxDecoration(
+      padding: const EdgeInsets.all(8),
+      decoration: const BoxDecoration(
         color: Colors.black,
         borderRadius: BorderRadius.all(Radius.circular(10)),
         image: DecorationImage(
@@ -48,7 +48,7 @@ class AppFooter extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             "HSE Buddy",
             style: TextStyle(
               fontSize: 30,
@@ -60,14 +60,14 @@ class AppFooter extends StatelessWidget {
             mainAxisSize: MainAxisSize.max,
             // mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
+              const Text(
                 "Write a Feedback\ndarryl@holegroup.com",
                 style: TextStyle(color: Colors.white),
               ),
-              Spacer(),
+              const Spacer(),
               ElevatedButton(
                 onPressed: _sendEmail,
-                child: Row(
+                child: const Row(
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text("Email us"),
@@ -76,7 +76,7 @@ class AppFooter extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(width: 20),
+              const SizedBox(width: 20),
             ],
           ),
         ],

@@ -51,7 +51,7 @@ class TableDataController extends GetxController {
             "Found ${tasks.length} tasks$dateRange",
             backgroundColor: Colors.green.shade100,
             colorText: Colors.green.shade800,
-            duration: Duration(seconds: 2),
+            duration: const Duration(seconds: 2),
           );
         }
       } else if (response.statusCode == 404) {
@@ -179,7 +179,7 @@ class TableDataController extends GetxController {
         "Preparing your CSV file...",
         backgroundColor: Colors.blue.shade100,
         colorText: Colors.blue.shade800,
-        duration: Duration(seconds: 2),
+        duration: const Duration(seconds: 2),
       );
       
       Uri uri = Uri.parse(url);
@@ -191,7 +191,7 @@ class TableDataController extends GetxController {
           "CSV file download started. Check your downloads folder.",
           backgroundColor: Colors.green.shade100,
           colorText: Colors.green.shade800,
-          duration: Duration(seconds: 3),
+          duration: const Duration(seconds: 3),
         );
       } else {
         Get.snackbar(

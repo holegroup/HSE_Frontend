@@ -1,6 +1,5 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive/hive.dart';
@@ -16,7 +15,7 @@ class NewReport extends StatefulWidget {
   final String equipmentName;
   final String partNumber;
 
-  NewReport(
+  const NewReport(
       {super.key,
       this.taskId,
       this.latitude,
@@ -75,7 +74,7 @@ class _NewReportState extends State<NewReport> {
         'Error',
         e.toString(),
         snackPosition: SnackPosition.BOTTOM,
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
       );
     } finally {
       draftController.loadDrafts();
@@ -83,7 +82,7 @@ class _NewReportState extends State<NewReport> {
         'Draft Saved',
         'Your draft has been saved successfully!',
         snackPosition: SnackPosition.BOTTOM,
-        margin: EdgeInsets.all(20),
+        margin: const EdgeInsets.all(20),
       );
       Get.offAllNamed('/');
     }
@@ -120,13 +119,13 @@ class _NewReportState extends State<NewReport> {
                         color: Color(0xFF4D4D4D),
                       ),
                     ),
-                    Text(
+                    const Text(
                       "Survey Date",
                       style: TextStyle(
                           fontWeight: FontWeight.bold, color: Colors.grey),
                     ),
                     Text(
-                      "${DateFormat('yyyy-MM-dd').format(DateTime.now())}",
+                      DateFormat('yyyy-MM-dd').format(DateTime.now()),
                     ),
                     const SizedBox(height: 20),
                     // Display multiple captured images
@@ -197,8 +196,8 @@ class _NewReportState extends State<NewReport> {
                                         },
                                       );
                                     },
-                                    child: Row(children: [
-                                      const Text("Delete image",
+                                    child: const Row(children: [
+                                      Text("Delete image",
                                           style: TextStyle(color: Colors.red)),
                                       Icon(
                                         Icons.delete,
@@ -253,26 +252,26 @@ class _NewReportState extends State<NewReport> {
                       ),
 
                     const SizedBox(height: 20),
-                    Text("Equipment Name"),
+                    const Text("Equipment Name"),
                     Text(
                       widget.equipmentName,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w500,
                         color: Color(0xFF4D4D4D),
                       ),
                     ),
-                    SizedBox(height: 10),
-                    Text("Part Number"),
+                    const SizedBox(height: 10),
+                    const Text("Part Number"),
                     Text(
                       widget.partNumber,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w500,
                         color: Color(0xFF4D4D4D),
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     TextFormField(
                       controller: locationController,
                       decoration: InputDecoration(
@@ -283,7 +282,7 @@ class _NewReportState extends State<NewReport> {
                         ),
                       ),
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     TextFormField(
                       controller: serialNumberController,
                       decoration: InputDecoration(
@@ -383,8 +382,8 @@ class _NewReportState extends State<NewReport> {
                               );
                             },
                             child: surveyController.isLoading == false
-                                ? Text("Submit")
-                                : SizedBox(
+                                ? const Text("Submit")
+                                : const SizedBox(
                                     height: 20,
                                     width: 20,
                                     child: CircularProgressIndicator(
@@ -395,7 +394,7 @@ class _NewReportState extends State<NewReport> {
                         }),
                       ],
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                   ],
                 ),
               ),

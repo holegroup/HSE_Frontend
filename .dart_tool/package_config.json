@@ -3,15 +3,21 @@
   "packages": [
     {
       "name": "_fe_analyzer_shared",
-      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/_fe_analyzer_shared-67.0.0",
+      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/_fe_analyzer_shared-76.0.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.3"
+    },
+    {
+      "name": "_macros",
+      "rootUri": "file:///F:/flutter/bin/cache/dart-sdk/pkg/_macros",
+      "packageUri": "lib/",
+      "languageVersion": "3.5"
     },
     {
       "name": "analyzer",
-      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/analyzer-6.4.1",
+      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/analyzer-6.11.0",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.3"
     },
     {
       "name": "archive",
@@ -39,9 +45,9 @@
     },
     {
       "name": "build",
-      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/build-2.4.1",
+      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/build-2.5.4",
       "packageUri": "lib/",
-      "languageVersion": "2.19"
+      "languageVersion": "3.7"
     },
     {
       "name": "build_config",
@@ -57,21 +63,21 @@
     },
     {
       "name": "build_resolvers",
-      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/build_resolvers-2.4.2",
+      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/build_resolvers-2.5.4",
       "packageUri": "lib/",
-      "languageVersion": "3.0"
+      "languageVersion": "3.7"
     },
     {
       "name": "build_runner",
-      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/build_runner-2.4.13",
+      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/build_runner-2.5.4",
       "packageUri": "lib/",
-      "languageVersion": "3.5"
+      "languageVersion": "3.7"
     },
     {
       "name": "build_runner_core",
-      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/build_runner_core-7.3.2",
+      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/build_runner_core-9.1.2",
       "packageUri": "lib/",
-      "languageVersion": "3.5"
+      "languageVersion": "3.7"
     },
     {
       "name": "built_collection",
@@ -177,7 +183,7 @@
     },
     {
       "name": "dart_style",
-      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/dart_style-2.3.6",
+      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/dart_style-2.3.8",
       "packageUri": "lib/",
       "languageVersion": "3.0"
     },
@@ -297,7 +303,7 @@
     },
     {
       "name": "flutter_plugin_android_lifecycle",
-      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.30",
+      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/flutter_plugin_android_lifecycle-2.0.31",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
@@ -536,6 +542,12 @@
       "languageVersion": "3.4"
     },
     {
+      "name": "macros",
+      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/macros-0.1.3-main.0",
+      "packageUri": "lib/",
+      "languageVersion": "3.4"
+    },
+    {
       "name": "matcher",
       "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/matcher-0.12.17",
       "packageUri": "lib/",
@@ -591,7 +603,7 @@
     },
     {
       "name": "path_provider_android",
-      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_android-2.2.18",
+      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/path_provider_android-2.2.19",
       "packageUri": "lib/",
       "languageVersion": "3.7"
     },
@@ -711,9 +723,9 @@
     },
     {
       "name": "shelf_web_socket",
-      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/shelf_web_socket-2.0.1",
+      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/shelf_web_socket-3.0.0",
       "packageUri": "lib/",
-      "languageVersion": "3.3"
+      "languageVersion": "3.5"
     },
     {
       "name": "simple_gesture_detector",
@@ -903,7 +915,7 @@
     },
     {
       "name": "win32",
-      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/win32-5.14.0",
+      "rootUri": "file:///C:/Users/imran/AppData/Local/Pub/Cache/hosted/pub.dev/win32-5.15.0",
       "packageUri": "lib/",
       "languageVersion": "3.8"
     },

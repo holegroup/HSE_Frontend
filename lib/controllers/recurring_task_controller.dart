@@ -39,7 +39,7 @@ class RecurringTaskController extends GetxController {
             "Success", 
             "Loaded ${recurringTasks.length} recurring tasks",
             backgroundColor: Colors.green.shade100,
-            duration: Duration(seconds: 2),
+            duration: const Duration(seconds: 2),
           );
         }
       } else {

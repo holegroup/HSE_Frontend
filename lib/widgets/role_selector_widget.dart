@@ -8,11 +8,11 @@ class RoleSelectorWidget extends StatelessWidget {
   final Function(String)? onRoleChanged;
 
   const RoleSelectorWidget({
-    Key? key,
+    super.key,
     required this.selectedRole,
     this.showLabel = true,
     this.onRoleChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -28,7 +28,7 @@ class RoleSelectorWidget extends StatelessWidget {
               color: Colors.grey.shade700,
             ),
           ),
-          SizedBox(height: 8),
+          const SizedBox(height: 8),
         ],
         Obx(() => Row(
           children: [
@@ -40,7 +40,7 @@ class RoleSelectorWidget extends StatelessWidget {
                 'Conduct inspections and submit reports',
               ),
             ),
-            SizedBox(width: 12),
+            const SizedBox(width: 12),
             Expanded(
               child: _buildRoleCard(
                 'supervisor',
@@ -66,8 +66,8 @@ class RoleSelectorWidget extends StatelessWidget {
         }
       },
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 200),
-        padding: EdgeInsets.all(12),
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.all(12),
         decoration: BoxDecoration(
           color: isSelected 
             ? ColorPalette.primaryColor.withOpacity(0.1)
@@ -83,7 +83,7 @@ class RoleSelectorWidget extends StatelessWidget {
             BoxShadow(
               color: ColorPalette.primaryColor.withOpacity(0.2),
               blurRadius: 8,
-              offset: Offset(0, 2),
+              offset: const Offset(0, 2),
             ),
           ] : [],
         ),
@@ -96,7 +96,7 @@ class RoleSelectorWidget extends StatelessWidget {
                 ? ColorPalette.primaryColor 
                 : Colors.grey.shade600,
             ),
-            SizedBox(height: 8),
+            const SizedBox(height: 8),
             Text(
               label,
               style: TextStyle(
@@ -107,7 +107,7 @@ class RoleSelectorWidget extends StatelessWidget {
                   : Colors.grey.shade700,
               ),
             ),
-            SizedBox(height: 4),
+            const SizedBox(height: 4),
             Text(
               description,
               textAlign: TextAlign.center,
@@ -119,14 +119,14 @@ class RoleSelectorWidget extends StatelessWidget {
               overflow: TextOverflow.ellipsis,
             ),
             if (isSelected) ...[
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Container(
-                padding: EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+                padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
                 decoration: BoxDecoration(
                   color: ColorPalette.primaryColor,
                   borderRadius: BorderRadius.circular(12),
                 ),
-                child: Text(
+                child: const Text(
                   'Selected',
                   style: TextStyle(
                     fontSize: 10,
@@ -149,15 +149,15 @@ class CompactRoleSelector extends StatelessWidget {
   final Function(String)? onRoleChanged;
 
   const CompactRoleSelector({
-    Key? key,
+    super.key,
     required this.selectedRole,
     this.onRoleChanged,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return Obx(() => Container(
-      padding: EdgeInsets.symmetric(horizontal: 4, vertical: 4),
+      padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 4),
       decoration: BoxDecoration(
         color: Colors.grey.shade100,
         borderRadius: BorderRadius.circular(12),
@@ -186,8 +186,8 @@ class CompactRoleSelector extends StatelessWidget {
         }
       },
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 200),
-        padding: EdgeInsets.symmetric(vertical: 10),
+        duration: const Duration(milliseconds: 200),
+        padding: const EdgeInsets.symmetric(vertical: 10),
         decoration: BoxDecoration(
           color: isSelected ? Colors.white : Colors.transparent,
           borderRadius: BorderRadius.circular(8),
@@ -195,7 +195,7 @@ class CompactRoleSelector extends StatelessWidget {
             BoxShadow(
               color: Colors.grey.withOpacity(0.2),
               blurRadius: 4,
-              offset: Offset(0, 2),
+              offset: const Offset(0, 2),
             ),
           ] : [],
         ),
@@ -209,7 +209,7 @@ class CompactRoleSelector extends StatelessWidget {
                 ? ColorPalette.primaryColor 
                 : Colors.grey.shade600,
             ),
-            SizedBox(width: 6),
+            const SizedBox(width: 6),
             Text(
               label,
               style: TextStyle(

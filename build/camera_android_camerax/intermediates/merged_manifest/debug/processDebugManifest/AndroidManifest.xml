@@ -2,7 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="io.flutter.plugins.camerax" >
 
-    <uses-sdk android:minSdkVersion="23" />
+    <uses-sdk android:minSdkVersion="21" />
 
     <uses-feature android:name="android.hardware.camera.any" />
 

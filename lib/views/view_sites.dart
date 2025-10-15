@@ -54,21 +54,21 @@ class _ViewSitesState extends State<ViewSites> {
               siteController.addNewSite();
             },
             child: userRole == 'supervisor'
-                ? Row(
+                ? const Row(
                     mainAxisSize: MainAxisSize.min,
-                    children: const [
+                    children: [
                       Text("Add Site"),
                       SizedBox(width: 4),
                       Icon(Icons.add),
                     ],
                   )
-                : SizedBox(),
+                : const SizedBox(),
           ),
         ],
       ),
       body: Obx(() {
         if (siteController.isloadingSite.value) {
-          return Center(
+          return const Center(
             child: CircularProgressIndicator(),
           );
         } else if (siteController.sites.isEmpty) {
@@ -90,14 +90,14 @@ class _ViewSitesState extends State<ViewSites> {
                   title: Text(site['site_name']),
                   subtitle: Text(site['location']),
                   trailing: siteController.loadingStates[siteId] == true
-                      ? SizedBox(
+                      ? const SizedBox(
                           height: 20,
                           width: 20,
                           child: CircularProgressIndicator(
                             color: Colors.black,
                           ),
                         )
-                      : Icon(Icons.arrow_forward_ios),
+                      : const Icon(Icons.arrow_forward_ios),
                   onTap: () async {
                     await siteController.fetchSiteById(siteId);
                     Get.to(() => SiteDetailPage(

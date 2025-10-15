@@ -117,7 +117,7 @@ class ForgotPasswordController extends GetxController {
         "Password reset functionality requires backend implementation. For demo, enter any 6-digit OTP.",
         backgroundColor: Colors.blue.shade100,
         colorText: Colors.blue.shade900,
-        duration: Duration(seconds: 5),
+        duration: const Duration(seconds: 5),
       );
       
       // Show OTP section for demo
@@ -256,11 +256,11 @@ class ForgotPasswordController extends GetxController {
         "In production, this would reset your password. For now, you can login with your existing credentials.",
         backgroundColor: Colors.green.shade100,
         colorText: Colors.green.shade900,
-        duration: Duration(seconds: 5),
+        duration: const Duration(seconds: 5),
       );
       
       // Navigate to login for demo
-      Future.delayed(Duration(seconds: 2), () {
+      Future.delayed(const Duration(seconds: 2), () {
         Get.offNamed('/login');
       });
     } finally {

@@ -38,7 +38,7 @@ class UserSearchBox extends StatelessWidget {
                   onPressed: () {
                     searchBarController.isVisible.value = false;
                   },
-                  icon: Icon(Icons.close)),
+                  icon: const Icon(Icons.close)),
               suffixIcon: Obx(() {
                 if (searchBarController.isLoading == false) {
                   return IconButton(
@@ -52,14 +52,14 @@ class UserSearchBox extends StatelessWidget {
                       shadows: [
                         Shadow(
                           color: Colors.blue.shade900.withOpacity(0.9),
-                          offset: Offset(0, 0),
+                          offset: const Offset(0, 0),
                           blurRadius: 30,
                         )
                       ],
                     ),
                   );
                 } else {
-                  return Icon(Icons.search);
+                  return const Icon(Icons.search);
                 }
               }),
               hintText: "Search...",
@@ -105,13 +105,13 @@ class UserSearchBox extends StatelessWidget {
                         },
                         child: Container(
                           height: 44,
-                          padding: EdgeInsets.all(8),
+                          padding: const EdgeInsets.all(8),
                           margin: EdgeInsets.only(
                               bottom: index + 1 ==
                                       searchBarController.filteredSites.length
                                   ? 0
                                   : 8),
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(5))),
                           child: Row(
@@ -163,21 +163,21 @@ class UserSearchBox extends StatelessWidget {
                     searchBarController.isVisible.value = false;
                   },
                   child: Container(
-                    margin: EdgeInsets.only(top: 30),
-                    padding: EdgeInsets.all(10),
+                    margin: const EdgeInsets.only(top: 30),
+                    padding: const EdgeInsets.all(10),
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.black.withOpacity(0.7),
-                          offset: Offset(0, 6),
+                          offset: const Offset(0, 6),
                           blurRadius: 14,
                           spreadRadius: -5,
                         )
                       ],
                     ),
-                    child: Icon(
+                    child: const Icon(
                       Icons.close,
                     ),
                   ),

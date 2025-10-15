@@ -30,9 +30,9 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
   bool isLoading = true;
 
   final List<Widget> _tabs = [
-    TaHome(),
-    RecurringTasks(),
-    CreateTask(),
+    const TaHome(),
+    const RecurringTasks(),
+    const CreateTask(),
   ];
 
   final List<IconData> _tabIcons = [
@@ -107,12 +107,12 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
       "This dashboard is only accessible to supervisors. Your role: ${userRole ?? 'Unknown'}",
       backgroundColor: Colors.red.shade100,
       colorText: Colors.red.shade900,
-      duration: Duration(seconds: 4),
+      duration: const Duration(seconds: 4),
       snackPosition: SnackPosition.TOP,
     );
     
     // Redirect based on actual role
-    Future.delayed(Duration(seconds: 2), () {
+    Future.delayed(const Duration(seconds: 2), () {
       if (userRole == 'inspector') {
         Get.offAllNamed('/');
       } else {
@@ -127,10 +127,10 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
       message,
       backgroundColor: Colors.orange.shade100,
       colorText: Colors.orange.shade900,
-      duration: Duration(seconds: 3),
+      duration: const Duration(seconds: 3),
     );
     
-    Future.delayed(Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 1), () {
       Get.offAllNamed('/login');
     });
   }
@@ -152,7 +152,7 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
         "Testing API",
         "Calling: $url",
         backgroundColor: Colors.blue.shade100,
-        duration: Duration(seconds: 2),
+        duration: const Duration(seconds: 2),
       );
       
       final response = await http.get(Uri.parse(url));
@@ -163,14 +163,14 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
         backgroundColor: response.statusCode == 200 
             ? Colors.green.shade100 
             : Colors.red.shade100,
-        duration: Duration(seconds: 5),
+        duration: const Duration(seconds: 5),
       );
     } catch (e) {
       Get.snackbar(
         "API Test Error",
         "Error: $e",
         backgroundColor: Colors.red.shade100,
-        duration: Duration(seconds: 3),
+        duration: const Duration(seconds: 3),
       );
     }
   }
@@ -180,18 +180,18 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Row(
+          title: const Row(
             children: [
               Icon(Icons.logout, color: ColorPalette.primaryColor),
               SizedBox(width: 8),
               Text('Logout'),
             ],
           ),
-          content: Text('Are you sure you want to logout?'),
+          content: const Text('Are you sure you want to logout?'),
           actions: [
             TextButton(
               onPressed: () => Navigator.of(context).pop(),
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
             ElevatedButton(
               onPressed: () {
@@ -201,7 +201,7 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: ColorPalette.primaryColor,
               ),
-              child: Text('Logout', style: TextStyle(color: Colors.white)),
+              child: const Text('Logout', style: TextStyle(color: Colors.white)),
             ),
           ],
         );
@@ -217,10 +217,10 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              CircularProgressIndicator(
+              const CircularProgressIndicator(
                 valueColor: AlwaysStoppedAnimation<Color>(ColorPalette.primaryColor),
               ),
-              SizedBox(height: 16),
+              const SizedBox(height: 16),
               Text(
                 'Validating supervisor access...',
                 style: TextStyle(
@@ -238,16 +238,16 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
       appBar: AppBar(
         title: Row(
           children: [
-            Icon(
+            const Icon(
               Icons.supervisor_account,
               color: ColorPalette.primaryColor,
               size: 28,
             ),
-            SizedBox(width: 8),
+            const SizedBox(width: 8),
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Supervisor Dashboard',
                   style: TextStyle(
                     fontSize: 18,
@@ -271,8 +271,8 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
         elevation: 2,
         actions: [
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-            padding: EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+            margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
             decoration: BoxDecoration(
               color: ColorPalette.primaryColor.withOpacity(0.1),
               borderRadius: BorderRadius.circular(20),
@@ -281,7 +281,7 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
                 width: 1,
               ),
             ),
-            child: Row(
+            child: const Row(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Icon(
@@ -303,7 +303,7 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
           ),
           IconButton(
             onPressed: _testApiConnection,
-            icon: Icon(
+            icon: const Icon(
               Icons.wifi_tethering,
               color: ColorPalette.primaryColor,
             ),
@@ -311,7 +311,7 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
           ),
           IconButton(
             onPressed: _logout,
-            icon: Icon(
+            icon: const Icon(
               Icons.logout,
               color: ColorPalette.primaryColor,
             ),
@@ -327,7 +327,7 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
               color: Colors.grey.withOpacity(0.2),
               spreadRadius: 1,
               blurRadius: 10,
-              offset: Offset(0, -2),
+              offset: const Offset(0, -2),
             ),
           ],
         ),
@@ -338,11 +338,11 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.white,
           elevation: 0,
-          selectedLabelStyle: TextStyle(
+          selectedLabelStyle: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 12,
           ),
-          unselectedLabelStyle: TextStyle(
+          unselectedLabelStyle: const TextStyle(
             fontSize: 11,
           ),
           onTap: (index) {
@@ -353,7 +353,7 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
           items: List.generate(_tabs.length, (index) {
             return BottomNavigationBarItem(
               icon: Container(
-                padding: EdgeInsets.all(8),
+                padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
                   color: _currentIndex == index
                       ? ColorPalette.primaryColor.withOpacity(0.1)

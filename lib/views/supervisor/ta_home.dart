@@ -11,7 +11,7 @@ import 'package:hole_hse_inspection/widgets/gand_chart.dart';
 import '../../config/color.palate.dart';
 
 class TaHome extends StatefulWidget {
-  TaHome({super.key});
+  const TaHome({super.key});
 
   @override
   State<TaHome> createState() => _TaHomeState();
@@ -34,7 +34,7 @@ class _TaHomeState extends State<TaHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Discover",
           style: TextStyle(fontSize: 34, fontWeight: FontWeight.bold),
         ),
@@ -57,7 +57,7 @@ class _TaHomeState extends State<TaHome> {
               scrollDirection: Axis.vertical,
               child: Column(
                 children: [
-                  SizedBox(height: 50),
+                  const SizedBox(height: 50),
                   Image.asset(
                     'assets/images/icon.png',
                     filterQuality: FilterQuality.low,
@@ -78,33 +78,33 @@ class _TaHomeState extends State<TaHome> {
                       );
                     },
                   ),
-                  SizedBox(height: 80),
+                  const SizedBox(height: 80),
                   CustomDrawerButton(
                     icon: Icons.settings,
                     label: "Profile Settings",
                     onPressed: () {
-                      Get.to(() => Profile());
+                      Get.to(() => const Profile());
                     },
                   ),
                   CustomDrawerButton(
                     icon: Icons.data_usage,
                     label: "View site data",
                     onPressed: () {
-                      Get.to(() => ViewSites());
+                      Get.to(() => const ViewSites());
                     },
                   ),
                   CustomDrawerButton(
                     icon: Icons.streetview,
                     label: "New Listings",
                     onPressed: () {
-                      Get.to(() => NewListing());
+                      Get.to(() => const NewListing());
                     },
                   ),
                   CustomDrawerButton(
                     icon: Icons.data_array_outlined,
                     label: "Table Data",
                     onPressed: () {
-                      Get.to(() => TableData());
+                      Get.to(() => const TableData());
                     },
                   ),
                 ],
@@ -127,8 +127,8 @@ class _TaHomeState extends State<TaHome> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TaskPieChart(),
-                    SizedBox(height: 50),
+                    const TaskPieChart(),
+                    const SizedBox(height: 50),
                     Obx(() {
                       if (taskController.getTaskIsLoading.value) {
                         return const Center(
@@ -162,7 +162,7 @@ class _TaHomeState extends State<TaHome> {
                                 child: ListTile(
                                   title: Text(
                                     task['product'],
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontWeight: FontWeight.w600,
                                     ),
                                   ),
@@ -187,15 +187,15 @@ class _TaHomeState extends State<TaHome> {
                             },
                           ),
                           // Show "Show More" button if there are more than 3 tasks
-                          if (taskController.tasks.length > 0)
+                          if (taskController.tasks.isNotEmpty)
                             TextButton(
                               onPressed: () {
                                 Get.to(() => AllTasksTa());
                               },
-                              child: Row(
+                              child: const Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const Text(
+                                  Text(
                                     "Show More",
                                     style: TextStyle(
                                         color: ColorPalette.primaryColor),
@@ -225,6 +225,6 @@ class _TaHomeState extends State<TaHome> {
 
 extension DateFormatting on DateTime {
   String toShortDateString() {
-    return "${this.year}-${this.month.toString().padLeft(2, '0')}-${this.day.toString().padLeft(2, '0')}";
+    return "$year-${month.toString().padLeft(2, '0')}-${day.toString().padLeft(2, '0')}";
   }
 }

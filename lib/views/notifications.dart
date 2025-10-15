@@ -7,11 +7,11 @@ class Notifications extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           "Notifications",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
-        actions: [TextButton(onPressed: () {}, child: Text("Read All"))],
+        actions: [TextButton(onPressed: () {}, child: const Text("Read All"))],
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -19,11 +19,11 @@ class Notifications extends StatelessWidget {
           children: [
             Container(
               width: double.maxFinite,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.all(Radius.circular(8)),
               ),
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               // margin: EdgeInsets.all(8),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -31,13 +31,13 @@ class Notifications extends StatelessWidget {
                   RichText(
                     text: TextSpan(
                       children: [
-                        TextSpan(
+                        const TextSpan(
                             text: "Fire estinguisher 238b",
                             style: TextStyle(
                               fontWeight: FontWeight.bold,
                               color: Colors.black,
                             )),
-                        TextSpan(
+                        const TextSpan(
                             text: " has marked as",
                             style: TextStyle(color: Colors.black)),
                         TextSpan(
@@ -49,23 +49,23 @@ class Notifications extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Text('2 hours ago'),
+                  const Text('2 hours ago'),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       ElevatedButton(
-                        style: ButtonStyle(
+                        style: const ButtonStyle(
                           // foregroundColor: WidgetStatePropertyAll(Colors.black),
                           backgroundColor:
                               WidgetStatePropertyAll(Colors.white30),
                         ),
                         onPressed: () {},
-                        child: Text("Survey"),
+                        child: const Text("Survey"),
                       ),
-                      SizedBox(width: 10),
+                      const SizedBox(width: 10),
                       ElevatedButton(
                         onPressed: () {},
-                        child: Text("Mark as Read"),
+                        child: const Text("Mark as Read"),
                       ),
                     ],
                   ),

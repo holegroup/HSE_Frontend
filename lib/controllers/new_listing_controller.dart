@@ -54,7 +54,7 @@ class NewListingController extends GetxController {
     required String itemId,
     required String status,
   }) async {
-    print('Item id - ${itemId}');
+    print('Item id - $itemId');
     final String url = "$baseUrl/api/sites/temp-item-status-change";
     try {
       isLoadingGlobal.value = true;
@@ -87,7 +87,7 @@ class NewListingController extends GetxController {
     required String partId,
     required String status,
   }) async {
-    print('Item id - ${partId}');
+    print('Item id - $partId');
     final String url = "$baseUrl/api/sites/temp-part-status-change";
     try {
       isLoadingGlobal.value = true;

@@ -6,7 +6,7 @@ import 'package:http/http.dart' as http;
 final String baseUrl = Constants.baseUrl;
 
 class SseService {
-  final String serverUrl = "${baseUrl}/api/sse/message";
+  final String serverUrl = "$baseUrl/api/sse/message";
   final FlutterLocalNotificationsPlugin _notificationsPlugin =
       FlutterLocalNotificationsPlugin();
 

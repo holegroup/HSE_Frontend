@@ -4,18 +4,19 @@ import 'app_config.dart';
 
 class Constants {
   // Environment configuration - CHANGE THIS TO SWITCH BETWEEN LOCAL AND LIVE
-  static const bool useProductionServer = true; // Set to false for local development
-  
+  static const bool useProductionServer =
+      true; // Set to false for local development
+
   // Production server URL - Your live backend
   static const String productionUrl = "https://hsebackend.myhsebuddy.com";
-  
+
   // Dynamic base URL based on platform and environment
   static String get baseUrl {
     // Use production server if enabled
     if (useProductionServer) {
       return productionUrl;
     }
-    
+
     // Local development URLs
     if (kIsWeb) {
       // Flutter web
@@ -33,14 +34,14 @@ class Constants {
       return "http://localhost:5000";
     }
   }
-  
+
   // Fallback URLs for backup servers (in order of preference)
-  static const String fallbackUrl = "https://inspection-app-backend.onrender.com";
-  static const String secondaryFallbackUrl = "https://hse-api.onrender.com";
-  
+  static const String fallbackUrl = "";
+  static const String secondaryFallbackUrl = "";
+
   // Alternative: Use AppConfig for more advanced configuration
   static String get advancedBaseUrl => AppConfig.baseUrl;
-  
+
   // API endpoints
   static const String loginEndpoint = "/api/users/login";
   static const String healthEndpoint = "/api/health";
