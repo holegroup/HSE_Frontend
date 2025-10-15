@@ -15,10 +15,16 @@ import 'package:hole_hse_inspection/views/signup.dart';
 import 'package:hole_hse_inspection/views/forgot_password.dart';
 import 'package:hole_hse_inspection/views/api_test_page.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:flutter_web_plugins/flutter_web_plugins.dart';
 
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  
+  // Configure URL strategy for web to remove hash from URLs
+  if (kIsWeb) {
+    setUrlStrategy(PathUrlStrategy());
+  }
   
   // Initialize Hive for web and mobile platforms differently
   if (kIsWeb) {

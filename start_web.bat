@@ -1,0 +1,3 @@
+@echo off
+echo Starting Flutter Web Server on port 60045...
+flutter run -d chrome --web-port=60045 --web-renderer=html
