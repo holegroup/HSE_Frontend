@@ -30,24 +30,35 @@ class RoleSelectorWidget extends StatelessWidget {
           ),
           const SizedBox(height: 8),
         ],
-        Obx(() => Row(
+        Obx(() => Column(
           children: [
-            Expanded(
-              child: _buildRoleCard(
-                'inspector',
-                'Inspector',
-                Icons.search,
-                'Conduct inspections and submit reports',
-              ),
+            Row(
+              children: [
+                Expanded(
+                  child: _buildRoleCard(
+                    'inspector',
+                    'Inspector',
+                    Icons.search,
+                    'Conduct inspections and submit reports',
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: _buildRoleCard(
+                    'supervisor',
+                    'Supervisor',
+                    Icons.supervisor_account,
+                    'Manage tasks and oversee operations',
+                  ),
+                ),
+              ],
             ),
-            const SizedBox(width: 12),
-            Expanded(
-              child: _buildRoleCard(
-                'supervisor',
-                'Supervisor',
-                Icons.supervisor_account,
-                'Manage tasks and oversee operations',
-              ),
+            const SizedBox(height: 12),
+            _buildRoleCard(
+              'superadmin',
+              'Super Admin',
+              Icons.admin_panel_settings,
+              'Full system access and user management',
             ),
           ],
         )),
@@ -162,14 +173,20 @@ class CompactRoleSelector extends StatelessWidget {
         color: Colors.grey.shade100,
         borderRadius: BorderRadius.circular(12),
       ),
-      child: Row(
+      child: Column(
         children: [
-          Expanded(
-            child: _buildOption('inspector', 'Inspector', Icons.search),
+          Row(
+            children: [
+              Expanded(
+                child: _buildOption('inspector', 'Inspector', Icons.search),
+              ),
+              Expanded(
+                child: _buildOption('supervisor', 'Supervisor', Icons.supervisor_account),
+              ),
+            ],
           ),
-          Expanded(
-            child: _buildOption('supervisor', 'Supervisor', Icons.supervisor_account),
-          ),
+          const SizedBox(height: 8),
+          _buildOption('superadmin', 'Super Admin', Icons.admin_panel_settings),
         ],
       ),
     ));

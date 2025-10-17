@@ -5,7 +5,7 @@ import 'app_config.dart';
 class Constants {
   // Environment configuration - CHANGE THIS TO SWITCH BETWEEN LOCAL AND LIVE
   static const bool useProductionServer =
-      true; // Set to false for local development
+      false; // Set to false for local development
 
   // Production server URL - Your live backend
   static const String productionUrl = "https://hsebackend.myhsebuddy.com";

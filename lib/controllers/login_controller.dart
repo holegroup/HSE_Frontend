@@ -137,7 +137,7 @@ class LoginController extends GetxController {
           return;
         }
         
-        if (userRole == "inspector" || userRole == "supervisor") {
+        if (userRole == "inspector" || userRole == "supervisor" || userRole == "superadmin") {
           var userBox = await Hive.openBox('userBox');
           userBox.put('userData', data); // Store the complete response data for future access
 
@@ -158,6 +158,14 @@ class LoginController extends GetxController {
               colorText: Colors.green.shade900,
             );
             Get.offAllNamed('/supervisor-dashboard');
+          } else if (userRole == "superadmin") {
+            Get.snackbar(
+              "Login Success", 
+              "Welcome back, Super Admin ${data['user']['name']}!",
+              backgroundColor: Colors.green.shade100,
+              colorText: Colors.green.shade900,
+            );
+            Get.offAllNamed('/superadmin-dashboard');
           }
         } else {
           Get.snackbar(
