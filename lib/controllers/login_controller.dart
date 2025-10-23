@@ -54,29 +54,26 @@ class LoginController extends GetxController {
     isLoading.value = true;
 
     try {
-      // Try primary server first
+      // Auto-detect available server
+      String serverUrl = await Constants.detectAvailableServer();
+      print('📡 Using server: $serverUrl');
+      
+      // Try detected server
       http.Response? response = await _attemptLogin(
-        Constants.baseUrl, 
+        serverUrl, 
         emailController.text, 
         passwordController.text
       );
       
-      // If primary server fails, try fallback server
+      // If detected server fails, try the other one
       if (response == null) {
-        print("Primary server failed, trying fallback server...");
-        Get.snackbar("Connecting", "Trying remote server...", duration: const Duration(seconds: 2));
+        print("Detected server failed, trying alternative...");
+        String alternativeUrl = serverUrl == Constants.productionUrl 
+            ? Constants.localUrl 
+            : Constants.productionUrl;
+        
         response = await _attemptLogin(
-          Constants.fallbackUrl, 
-          emailController.text, 
-          passwordController.text
-        );
-      }
-      
-      // If both servers fail, try secondary fallback
-      if (response == null) {
-        print("Fallback server failed, trying secondary fallback...");
-        response = await _attemptLogin(
-          Constants.secondaryFallbackUrl, 
+          alternativeUrl, 
           emailController.text, 
           passwordController.text
         );
@@ -85,21 +82,11 @@ class LoginController extends GetxController {
       // If all servers fail
       if (response == null) {
         Get.snackbar(
-          "Backend Server Not Running",
-          "Cannot connect to the backend server. Please start the backend server and try again.",
+          "Connection Failed",
+          "Cannot connect to any server. Please check your internet connection and try again.",
           backgroundColor: Colors.red.shade100,
           colorText: Colors.red.shade900,
-          duration: const Duration(seconds: 6),
-          mainButton: TextButton(
-            onPressed: () {
-              Get.back();
-              _showServerInstructions();
-            },
-            child: Text(
-              "How to Fix",
-              style: TextStyle(color: Colors.red.shade900, fontWeight: FontWeight.bold),
-            ),
-          ),
+          duration: const Duration(seconds: 4),
         );
         return;
       }
