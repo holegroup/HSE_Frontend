@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hole_hse_inspection/config/color.palate.dart';
 import 'package:hole_hse_inspection/controllers/login_controller.dart';
-import 'package:hole_hse_inspection/widgets/role_selector_widget.dart';
+import 'package:hole_hse_inspection/widgets/role_dropdown_widget.dart';
 
 class Login extends StatelessWidget {
   final LoginController controller = Get.put(LoginController());
@@ -106,9 +106,9 @@ class Login extends StatelessWidget {
                     obscureText: true,
                   ),
                   const SizedBox(height: 20),
-                  
-                  // Role Selection with new widget
-                  RoleSelectorWidget(
+
+                  // Role Selection with dropdown
+                  RoleDropdownWidget(
                     selectedRole: controller.selectedRole,
                     showLabel: true,
                   ),
@@ -128,7 +128,8 @@ class Login extends StatelessWidget {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         backgroundColor: ColorPalette.primaryColor,
-                        disabledBackgroundColor: ColorPalette.primaryColor.withOpacity(0.6),
+                        disabledBackgroundColor:
+                            ColorPalette.primaryColor.withOpacity(0.6),
                       ),
                       child: controller.isLoading.value
                           ? const Row(
@@ -177,64 +178,7 @@ class Login extends StatelessWidget {
                       ),
                     ),
                   ),
-                  
-                  const SizedBox(height: 20),
-                  
-                  // Divider
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Divider(
-                          color: Colors.grey.shade400,
-                          thickness: 1,
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 10),
-                        child: Text(
-                          'OR',
-                          style: TextStyle(
-                            color: Colors.grey.shade600,
-                            fontWeight: FontWeight.w500,
-                          ),
-                        ),
-                      ),
-                      Expanded(
-                        child: Divider(
-                          color: Colors.grey.shade400,
-                          thickness: 1,
-                        ),
-                      ),
-                    ],
-                  ),
-                  
-                  const SizedBox(height: 20),
-                  
-                  // Sign Up Section
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "Don't have an account? ",
-                        style: TextStyle(
-                          color: Colors.grey,
-                          fontSize: 15,
-                        ),
-                      ),
-                      GestureDetector(
-                        onTap: () => Get.toNamed('/signup'),
-                        child: const Text(
-                          'Sign Up',
-                          style: TextStyle(
-                            color: ColorPalette.primaryColor,
-                            fontWeight: FontWeight.bold,
-                            fontSize: 15,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  
+
                   const SizedBox(height: 30),
                 ],
               ),

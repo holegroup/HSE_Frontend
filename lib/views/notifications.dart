@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:hole_hse_inspection/widgets/admin_scaffold.dart';
 
 class Notifications extends StatelessWidget {
   const Notifications({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Notifications",
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        actions: [TextButton(onPressed: () {}, child: const Text("Read All"))],
-      ),
+    return AdminScaffold(
+      title: 'Notifications',
+      actions: [TextButton(onPressed: () {}, child: const Text("Read All"))],
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(

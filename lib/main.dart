@@ -11,6 +11,8 @@ import 'package:hole_hse_inspection/views/camera_view.dart';
 import 'package:hole_hse_inspection/views/home.dart';
 import 'package:hole_hse_inspection/views/supervisor/supervisor_dashboard.dart';
 import 'package:hole_hse_inspection/views/superadmin/superadmin_dashboard.dart';
+import 'package:hole_hse_inspection/views/all_tasks.dart';
+import 'package:hole_hse_inspection/views/view_sites.dart';
 import 'package:hole_hse_inspection/views/superadmin/create_user_page.dart';
 import 'package:hole_hse_inspection/views/superadmin/manage_users_page.dart';
 import 'package:hole_hse_inspection/views/superadmin/system_settings_page.dart';
@@ -36,7 +38,7 @@ void main() async {
 
   // Start app immediately with loading state, initialize heavy operations in background
   runApp(MyApp(initialRoute: '/loading'));
-  
+
   // Initialize heavy operations in background
   _initializeAppAsync();
 }
@@ -150,15 +152,20 @@ class MyApp extends StatelessWidget {
             page: () => const SuperAdminDashboard()),
         GetPage(name: '/create-user', page: () => const CreateUserPage()),
         GetPage(name: '/manage-users', page: () => const ManageUsersPage()),
-        GetPage(name: '/system-settings', page: () => const SystemSettingsPage()),
+        GetPage(
+            name: '/system-settings', page: () => const SystemSettingsPage()),
         GetPage(name: '/reports', page: () => const ReportsPage()),
         GetPage(name: '/system-logs', page: () => const SystemLogsPage()),
         GetPage(name: '/profile', page: () => const ProfilePage()),
         GetPage(name: '/camera', page: () => CameraView()),
         GetPage(name: '/login', page: () => Login()),
         GetPage(name: '/signup', page: () => const SignupPage()),
-        GetPage(name: '/forgot-password', page: () => const ForgotPasswordPage()),
+        GetPage(
+            name: '/forgot-password', page: () => const ForgotPasswordPage()),
         GetPage(name: '/api-test', page: () => const ApiTestPage()),
+        // Added missing routes for AdminScaffold
+        GetPage(name: '/all-tasks', page: () => AllTasks()),
+        GetPage(name: '/view-sites', page: () => const ViewSites()),
       ],
     );
   }
@@ -197,15 +204,15 @@ class LoadingScreen extends StatelessWidget {
             Text(
               'Initializing HSE Inspection...',
               style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                color: Colors.grey[600],
-              ),
+                    color: Colors.grey[600],
+                  ),
             ),
             const SizedBox(height: 8),
             Text(
               'Please wait while we set up your workspace',
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                color: Colors.grey[500],
-              ),
+                    color: Colors.grey[500],
+                  ),
             ),
           ],
         ),

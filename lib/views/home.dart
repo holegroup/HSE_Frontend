@@ -7,10 +7,9 @@ import 'package:hole_hse_inspection/controllers/search_controller.dart';
 import 'package:hole_hse_inspection/controllers/task_controller.dart';
 import 'package:hole_hse_inspection/views/all_tasks.dart';
 import 'package:hole_hse_inspection/views/draft_report.dart';
-import 'package:hole_hse_inspection/views/profile.dart';
-import 'package:hole_hse_inspection/views/view_sites.dart';
-import 'package:hole_hse_inspection/widgets/drawer_button.dart';
+// imports removed: profile, view_sites, drawer_button (no longer needed; AdminScaffold provides navigation)
 import 'package:hole_hse_inspection/widgets/footer.dart';
+import 'package:hole_hse_inspection/widgets/unified_scaffold.dart';
 import 'package:hole_hse_inspection/widgets/search.dart';
 import 'package:hole_hse_inspection/widgets/todo_calender.dart';
 import '../controllers/draft_controller.dart';
@@ -44,96 +43,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          elevation: 0,
-          title: const Text(
-            "Dashboard",
-            style: TextStyle(
-              fontSize: 35,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-          leading: Builder(
-            builder: (context) {
-              return IconButton(
-                icon: const Icon(Icons.menu),
-                onPressed: () {
-                  Scaffold.of(context).openDrawer();
-                },
-              );
-            },
-          ),
-          actions: [
-            SizedBox(
-              // height: 30,
-              width: 40,
-              child: Image.asset(
-                'assets/images/icon.png',
-                filterQuality: FilterQuality.low,
-                errorBuilder: (context, error, stackTrace) {
-                  return Icon(
-                    Icons.business,
-                    size: 30,
-                    color: Colors.grey.shade600,
-                  );
-                },
-              ),
-            ),
-            const SizedBox(
-              width: 30,
-            )
-          ]),
-      drawer: Drawer(
-        backgroundColor: Colors.white,
-        child: SafeArea(
-          child: LayoutBuilder(builder: (context, constrains) {
-            return SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Column(
-                children: [
-                  const SizedBox(height: 50),
-                  Image.asset(
-                    'assets/images/icon.png',
-                    filterQuality: FilterQuality.low,
-                    width: constrains.maxWidth * 0.5,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        width: constrains.maxWidth * 0.5,
-                        height: 200,
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade200,
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Icon(
-                          Icons.business,
-                          size: 80,
-                          color: Colors.grey.shade600,
-                        ),
-                      );
-                    },
-                  ),
-                  const SizedBox(height: 80),
-                  CustomDrawerButton(
-                    icon: Icons.settings,
-                    label: "Profile Settings",
-                    onPressed: () {
-                      Get.to(() => const Profile());
-                    },
-                  ),
-                  CustomDrawerButton(
-                    icon: Icons.data_usage,
-                    label: "View site data",
-                    onPressed: () {
-                      Get.to(() => const ViewSites());
-                    },
-                  ),
-                ],
-              ),
-            );
-          }),
-        ),
-      ),
+    return UnifiedScaffold(
+      title: 'Inspector Dashboard',
       body: SafeArea(
         child: RefreshIndicator(
           onRefresh: _refreshData,
@@ -244,8 +155,10 @@ class _HomePageState extends State<HomePage> {
                                               right: 0,
                                               child: Container(
                                                 margin: const EdgeInsets.all(8),
-                                                padding: const EdgeInsets.symmetric(
-                                                    vertical: 4, horizontal: 8),
+                                                padding:
+                                                    const EdgeInsets.symmetric(
+                                                        vertical: 4,
+                                                        horizontal: 8),
                                                 decoration: const BoxDecoration(
                                                   color: Colors.red,
                                                   borderRadius:

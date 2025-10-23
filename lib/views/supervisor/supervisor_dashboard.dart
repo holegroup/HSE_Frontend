@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hole_hse_inspection/config/color.palate.dart';
-import 'package:hole_hse_inspection/config/env.dart';
+import 'package:hole_hse_inspection/controllers/login_controller.dart';
+import 'package:hole_hse_inspection/views/supervisor/ta_home.dart';
+import 'package:hole_hse_inspection/views/supervisor/ta_reports.dart';
+import 'package:hole_hse_inspection/views/supervisor/ta_tasks.dart';
+import 'package:hole_hse_inspection/views/supervisor/ta_team.dart';
+import 'package:hole_hse_inspection/widgets/unified_scaffold.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 import 'package:hole_hse_inspection/controllers/recurring_task_controller.dart';
-import 'package:hole_hse_inspection/views/supervisor/create_task.dart';
-import 'package:hole_hse_inspection/views/supervisor/recurringTasks.dart';
-import '../../controllers/login_controller.dart';
-import 'ta_home.dart';
 import 'package:hole_hse_inspection/controllers/task_controller.dart';
 import 'package:hive/hive.dart';
-import 'package:http/http.dart' as http;
 
 class SupervisorDashboard extends StatefulWidget {
   const SupervisorDashboard({super.key});
@@ -234,91 +236,49 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
       );
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          children: [
-            const Icon(
-              Icons.supervisor_account,
+    return UnifiedScaffold(
+      title: 'Supervisor Dashboard',
+      actions: [
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+          decoration: BoxDecoration(
+            color: ColorPalette.primaryColor.withOpacity(0.1),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(
               color: ColorPalette.primaryColor,
-              size: 28,
+              width: 1,
             ),
-            const SizedBox(width: 8),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  'Supervisor Dashboard',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                if (userName != null)
-                  Text(
-                    'Welcome, $userName',
-                    style: TextStyle(
-                      fontSize: 12,
-                      color: Colors.grey.shade600,
-                      fontWeight: FontWeight.normal,
-                    ),
-                  ),
-              ],
-            ),
-          ],
-        ),
-        backgroundColor: Colors.white,
-        elevation: 2,
-        actions: [
-          Container(
-            margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-            decoration: BoxDecoration(
-              color: ColorPalette.primaryColor.withOpacity(0.1),
-              borderRadius: BorderRadius.circular(20),
-              border: Border.all(
+          ),
+          child: const Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(
+                Icons.verified_user,
+                size: 16,
                 color: ColorPalette.primaryColor,
-                width: 1,
               ),
-            ),
-            child: const Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(
-                  Icons.verified_user,
-                  size: 16,
+              SizedBox(width: 4),
+              Text(
+                'Supervisor',
+                style: TextStyle(
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
                   color: ColorPalette.primaryColor,
                 ),
-                SizedBox(width: 4),
-                Text(
-                  'Supervisor',
-                  style: TextStyle(
-                    fontSize: 12,
-                    fontWeight: FontWeight.bold,
-                    color: ColorPalette.primaryColor,
-                  ),
-                ),
-              ],
-            ),
+              ),
+            ],
           ),
-          IconButton(
-            onPressed: _testApiConnection,
-            icon: const Icon(
-              Icons.wifi_tethering,
-              color: ColorPalette.primaryColor,
-            ),
-            tooltip: 'Test API Connection',
+        ),
+        IconButton(
+          onPressed: _testApiConnection,
+          icon: const Icon(
+            Icons.wifi_tethering,
+            color: ColorPalette.primaryColor,
           ),
-          IconButton(
-            onPressed: _logout,
-            icon: const Icon(
-              Icons.logout,
-              color: ColorPalette.primaryColor,
-            ),
-            tooltip: 'Logout',
-          ),
-        ],
-      ),
+          tooltip: 'Test API Connection',
+        ),
+      ],
       body: _tabs[_currentIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(

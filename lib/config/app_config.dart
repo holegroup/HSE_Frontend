@@ -24,7 +24,7 @@ class AppConfig {
       'enableDebugMode': true,
     },
     Environment.staging: {
-      'baseUrl': '',
+      'baseUrl': 'https://hsebackend.myhsebuddy.com',
       'apiTimeout': 15000,
       'enableLogging': true,
       'enableDebugMode': false,

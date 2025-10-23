@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:hole_hse_inspection/controllers/login_controller.dart';
 import 'package:hole_hse_inspection/controllers/site_controller.dart';
 import 'package:hole_hse_inspection/views/site_detail.dart';
+import 'package:hole_hse_inspection/widgets/admin_scaffold.dart';
 
 class ViewSites extends StatefulWidget {
   const ViewSites({
@@ -45,27 +46,25 @@ class _ViewSitesState extends State<ViewSites> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Site Data'),
-        actions: [
-          TextButton(
-            onPressed: () {
-              siteController.addNewSite();
-            },
-            child: userRole == 'supervisor'
-                ? const Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Text("Add Site"),
-                      SizedBox(width: 4),
-                      Icon(Icons.add),
-                    ],
-                  )
-                : const SizedBox(),
-          ),
-        ],
-      ),
+    return AdminScaffold(
+      title: 'Site Data',
+      actions: [
+        TextButton(
+          onPressed: () {
+            siteController.addNewSite();
+          },
+          child: userRole == 'supervisor'
+              ? const Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text("Add Site"),
+                    SizedBox(width: 4),
+                    Icon(Icons.add),
+                  ],
+                )
+              : const SizedBox(),
+        ),
+      ],
       body: Obx(() {
         if (siteController.isloadingSite.value) {
           return const Center(

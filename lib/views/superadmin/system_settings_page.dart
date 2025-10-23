@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hole_hse_inspection/config/color.palate.dart';
+import 'package:hole_hse_inspection/config/app_config.dart';
 import 'package:hole_hse_inspection/controllers/system_settings_controller.dart';
 
 class SystemSettingsPage extends StatelessWidget {
@@ -8,8 +9,9 @@ class SystemSettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final SystemSettingsController controller = Get.put(SystemSettingsController());
-    
+    final SystemSettingsController controller =
+        Get.put(SystemSettingsController());
+
     return Scaffold(
       backgroundColor: Colors.grey.shade50,
       appBar: AppBar(
@@ -47,7 +49,8 @@ class SystemSettingsPage extends StatelessWidget {
                   'Application Name',
                   'HSE Inspection System',
                   Icons.app_registration,
-                  onTap: () => _showEditDialog('Application Name', 'HSE Inspection System'),
+                  onTap: () => _showEditDialog(
+                      'Application Name', 'HSE Inspection System'),
                 ),
                 _buildSettingTile(
                   'System Version',
@@ -60,16 +63,17 @@ class SystemSettingsPage extends StatelessWidget {
                   'Disabled',
                   Icons.build,
                   trailing: Obx(() => Switch(
-                    value: controller.maintenanceMode.value,
-                    onChanged: (value) => controller.toggleMaintenanceMode(value),
-                    activeColor: ColorPalette.primaryColor,
-                  )),
+                        value: controller.maintenanceMode.value,
+                        onChanged: (value) =>
+                            controller.toggleMaintenanceMode(value),
+                        activeColor: ColorPalette.primaryColor,
+                      )),
                 ),
               ],
             ),
-            
+
             const SizedBox(height: 16),
-            
+
             // User Management Settings
             _buildSectionCard(
               'User Management',
@@ -92,10 +96,11 @@ class SystemSettingsPage extends StatelessWidget {
                   'Enabled',
                   Icons.approval,
                   trailing: Obx(() => Switch(
-                    value: controller.autoApproveUsers.value,
-                    onChanged: (value) => controller.toggleAutoApproveUsers(value),
-                    activeColor: ColorPalette.primaryColor,
-                  )),
+                        value: controller.autoApproveUsers.value,
+                        onChanged: (value) =>
+                            controller.toggleAutoApproveUsers(value),
+                        activeColor: ColorPalette.primaryColor,
+                      )),
                 ),
                 _buildSettingTile(
                   'Session Timeout',
@@ -105,9 +110,9 @@ class SystemSettingsPage extends StatelessWidget {
                 ),
               ],
             ),
-            
+
             const SizedBox(height: 16),
-            
+
             // Security Settings
             _buildSectionCard(
               'Security',
@@ -118,10 +123,11 @@ class SystemSettingsPage extends StatelessWidget {
                   'Optional',
                   Icons.verified_user,
                   trailing: Obx(() => Switch(
-                    value: controller.twoFactorAuth.value,
-                    onChanged: (value) => controller.toggleTwoFactorAuth(value),
-                    activeColor: ColorPalette.primaryColor,
-                  )),
+                        value: controller.twoFactorAuth.value,
+                        onChanged: (value) =>
+                            controller.toggleTwoFactorAuth(value),
+                        activeColor: ColorPalette.primaryColor,
+                      )),
                 ),
                 _buildSettingTile(
                   'Login Attempts Limit',
@@ -134,16 +140,17 @@ class SystemSettingsPage extends StatelessWidget {
                   'Enabled',
                   Icons.speed,
                   trailing: Obx(() => Switch(
-                    value: controller.apiRateLimit.value,
-                    onChanged: (value) => controller.toggleApiRateLimit(value),
-                    activeColor: ColorPalette.primaryColor,
-                  )),
+                        value: controller.apiRateLimit.value,
+                        onChanged: (value) =>
+                            controller.toggleApiRateLimit(value),
+                        activeColor: ColorPalette.primaryColor,
+                      )),
                 ),
               ],
             ),
-            
+
             const SizedBox(height: 16),
-            
+
             // Notification Settings
             _buildSectionCard(
               'Notifications',
@@ -154,36 +161,39 @@ class SystemSettingsPage extends StatelessWidget {
                   'Enabled',
                   Icons.email,
                   trailing: Obx(() => Switch(
-                    value: controller.emailNotifications.value,
-                    onChanged: (value) => controller.toggleEmailNotifications(value),
-                    activeColor: ColorPalette.primaryColor,
-                  )),
+                        value: controller.emailNotifications.value,
+                        onChanged: (value) =>
+                            controller.toggleEmailNotifications(value),
+                        activeColor: ColorPalette.primaryColor,
+                      )),
                 ),
                 _buildSettingTile(
                   'Push Notifications',
                   'Enabled',
                   Icons.push_pin,
                   trailing: Obx(() => Switch(
-                    value: controller.pushNotifications.value,
-                    onChanged: (value) => controller.togglePushNotifications(value),
-                    activeColor: ColorPalette.primaryColor,
-                  )),
+                        value: controller.pushNotifications.value,
+                        onChanged: (value) =>
+                            controller.togglePushNotifications(value),
+                        activeColor: ColorPalette.primaryColor,
+                      )),
                 ),
                 _buildSettingTile(
                   'SMS Notifications',
                   'Disabled',
                   Icons.sms,
                   trailing: Obx(() => Switch(
-                    value: controller.smsNotifications.value,
-                    onChanged: (value) => controller.toggleSmsNotifications(value),
-                    activeColor: ColorPalette.primaryColor,
-                  )),
+                        value: controller.smsNotifications.value,
+                        onChanged: (value) =>
+                            controller.toggleSmsNotifications(value),
+                        activeColor: ColorPalette.primaryColor,
+                      )),
                 ),
               ],
             ),
-            
+
             const SizedBox(height: 16),
-            
+
             // Database Settings
             _buildSectionCard(
               'Database',
@@ -194,7 +204,8 @@ class SystemSettingsPage extends StatelessWidget {
                   'Connected',
                   Icons.check_circle,
                   trailing: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
                     decoration: BoxDecoration(
                       color: Colors.green.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(12),
@@ -229,9 +240,9 @@ class SystemSettingsPage extends StatelessWidget {
                 ),
               ],
             ),
-            
+
             const SizedBox(height: 16),
-            
+
             // System Actions
             _buildSectionCard(
               'System Actions',
@@ -263,36 +274,95 @@ class SystemSettingsPage extends StatelessWidget {
                 ),
               ],
             ),
-            
+
             const SizedBox(height: 32),
-            
-            // Save Button
-            Obx(() => SizedBox(
-              width: double.infinity,
-              height: 56,
-              child: ElevatedButton(
-                onPressed: controller.isLoading.value
-                    ? null
-                    : () => controller.saveSettings(),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: ColorPalette.primaryColor,
-                  foregroundColor: Colors.white,
-                  elevation: 0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12),
+
+            // Environment Settings
+            _buildSectionCard(
+              'Environment Settings',
+              Icons.cloud,
+              [
+                _buildSettingTile(
+                  'Current Environment',
+                  'Currently using: ${AppConfig.environment.toString().split('.').last.toUpperCase()}',
+                  Icons.public,
+                  onTap: () => _showEnvironmentDialog(),
+                  trailing: Container(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+                    decoration: BoxDecoration(
+                      color: (AppConfig.environment == Environment.production
+                              ? Colors.green
+                              : Colors.orange)
+                          .withOpacity(0.1),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: Text(
+                      AppConfig.environment == Environment.production
+                          ? 'LIVE'
+                          : 'LOCAL',
+                      style: TextStyle(
+                        color: AppConfig.environment == Environment.production
+                            ? Colors.green
+                            : Colors.orange,
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
                   ),
                 ),
-                child: controller.isLoading.value
-                    ? const CircularProgressIndicator(color: Colors.white)
-                    : const Text(
-                        'Save All Settings',
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w600,
-                        ),
+                _buildSettingTile(
+                  'Base URL',
+                  AppConfig.baseUrl,
+                  Icons.link,
+                ),
+                _buildSettingTile(
+                  'Debug Mode',
+                  AppConfig.enableDebugMode ? 'Enabled' : 'Disabled',
+                  Icons.bug_report,
+                  trailing: Switch(
+                    value: AppConfig.enableDebugMode,
+                    onChanged: (value) => Get.snackbar(
+                      'Debug Mode',
+                      'Change debug mode in config/app_config.dart',
+                      backgroundColor: Colors.orange,
+                      colorText: Colors.white,
+                    ),
+                    activeColor: ColorPalette.primaryColor,
+                  ),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 32),
+
+            // Save Button
+            Obx(() => SizedBox(
+                  width: double.infinity,
+                  height: 56,
+                  child: ElevatedButton(
+                    onPressed: controller.isLoading.value
+                        ? null
+                        : () => controller.saveSettings(),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: ColorPalette.primaryColor,
+                      foregroundColor: Colors.white,
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12),
                       ),
-              ),
-            )),
+                    ),
+                    child: controller.isLoading.value
+                        ? const CircularProgressIndicator(color: Colors.white)
+                        : const Text(
+                            'Save All Settings',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                  ),
+                )),
           ],
         ),
       ),
@@ -369,7 +439,8 @@ class SystemSettingsPage extends StatelessWidget {
           fontSize: 14,
         ),
       ),
-      trailing: trailing ?? (onTap != null ? const Icon(Icons.chevron_right) : null),
+      trailing:
+          trailing ?? (onTap != null ? const Icon(Icons.chevron_right) : null),
       onTap: onTap,
     );
   }
@@ -446,7 +517,8 @@ class SystemSettingsPage extends StatelessWidget {
     Get.dialog(
       AlertDialog(
         title: const Text('Password Policy'),
-        content: const Text('Password policy configuration will be implemented here.'),
+        content: const Text(
+            'Password policy configuration will be implemented here.'),
         actions: [
           TextButton(
             onPressed: () => Get.back(),
@@ -461,7 +533,8 @@ class SystemSettingsPage extends StatelessWidget {
     Get.dialog(
       AlertDialog(
         title: const Text('Session Timeout'),
-        content: const Text('Session timeout configuration will be implemented here.'),
+        content: const Text(
+            'Session timeout configuration will be implemented here.'),
         actions: [
           TextButton(
             onPressed: () => Get.back(),
@@ -476,7 +549,8 @@ class SystemSettingsPage extends StatelessWidget {
     Get.dialog(
       AlertDialog(
         title: const Text('Login Attempts Limit'),
-        content: const Text('Login attempts limit configuration will be implemented here.'),
+        content: const Text(
+            'Login attempts limit configuration will be implemented here.'),
         actions: [
           TextButton(
             onPressed: () => Get.back(),
@@ -491,7 +565,8 @@ class SystemSettingsPage extends StatelessWidget {
     Get.dialog(
       AlertDialog(
         title: const Text('Backup Schedule'),
-        content: const Text('Backup schedule configuration will be implemented here.'),
+        content: const Text(
+            'Backup schedule configuration will be implemented here.'),
         actions: [
           TextButton(
             onPressed: () => Get.back(),
@@ -506,7 +581,8 @@ class SystemSettingsPage extends StatelessWidget {
     Get.dialog(
       AlertDialog(
         title: const Text('Data Retention'),
-        content: const Text('Data retention configuration will be implemented here.'),
+        content: const Text(
+            'Data retention configuration will be implemented here.'),
         actions: [
           TextButton(
             onPressed: () => Get.back(),
@@ -517,11 +593,13 @@ class SystemSettingsPage extends StatelessWidget {
     );
   }
 
-  void _showResetConfirmation(String type, SystemSettingsController controller) {
+  void _showResetConfirmation(
+      String type, SystemSettingsController controller) {
     Get.dialog(
       AlertDialog(
         title: Text('Reset ${type.capitalize}'),
-        content: Text('Are you sure you want to reset all $type? This action cannot be undone.'),
+        content: Text(
+            'Are you sure you want to reset all $type? This action cannot be undone.'),
         actions: [
           TextButton(
             onPressed: () => Get.back(),
@@ -537,6 +615,88 @@ class SystemSettingsPage extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  void _showEnvironmentDialog() {
+    Get.dialog(
+      AlertDialog(
+        title: const Text('Select Environment'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            _buildEnvironmentOption(
+              Environment.development,
+              'Local Development',
+              'Uses local development server',
+              'http://localhost:5000 or http://10.0.2.2:5000',
+            ),
+            const Divider(),
+            _buildEnvironmentOption(
+              Environment.staging,
+              'Staging',
+              'Uses staging server',
+              'Not configured',
+              enabled: false,
+            ),
+            const Divider(),
+            _buildEnvironmentOption(
+              Environment.production,
+              'Production',
+              'Uses live production server',
+              'https://hsebackend.myhsebuddy.com',
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildEnvironmentOption(
+    Environment env,
+    String title,
+    String subtitle,
+    String url, {
+    bool enabled = true,
+  }) {
+    final bool isSelected = AppConfig.environment == env;
+
+    return ListTile(
+      title: Text(title),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(subtitle),
+          const SizedBox(height: 4),
+          Text(
+            url,
+            style: TextStyle(
+              fontSize: 12,
+              color: enabled ? Colors.blue : Colors.grey,
+            ),
+          ),
+        ],
+      ),
+      trailing: isSelected
+          ? const Icon(Icons.check_circle, color: Colors.green)
+          : null,
+      selected: isSelected,
+      enabled: enabled,
+      onTap: enabled
+          ? () {
+              AppConfig.setEnvironment(env);
+              Get.back();
+
+              Get.snackbar(
+                'Environment Changed',
+                'Switched to ${title.split(' ')[0]} environment',
+                snackPosition: SnackPosition.BOTTOM,
+                backgroundColor: Colors.green,
+                colorText: Colors.white,
+                duration: const Duration(seconds: 3),
+              );
+            }
+          : null,
     );
   }
 }

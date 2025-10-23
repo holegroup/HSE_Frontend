@@ -19,7 +19,6 @@ class CreateTask extends StatefulWidget {
 }
 
 class _CreateTaskState extends State<CreateTask> {
-
   final LoginController loginController = Get.find<LoginController>();
 
   final SearchWidgetController searchBarController =
@@ -32,7 +31,6 @@ class _CreateTaskState extends State<CreateTask> {
   final TextEditingController _dateController = TextEditingController();
   final TextEditingController _noteController = TextEditingController();
   final TextEditingController _freqController = TextEditingController();
-
 
   final String baseUrl = Constants.baseUrl;
   bool isLoading = false;
@@ -53,7 +51,7 @@ class _CreateTaskState extends State<CreateTask> {
     // Additional validation for search fields
     if (userSearchBarController.selectedInspectorEmail.value.isEmpty) {
       Get.snackbar(
-        "Validation Error", 
+        "Validation Error",
         "Please select an inspector from the search results",
         backgroundColor: Colors.red.shade100,
         colorText: Colors.red.shade900,
@@ -63,7 +61,7 @@ class _CreateTaskState extends State<CreateTask> {
 
     if (searchBarController.selectedPartNumber.value.isEmpty) {
       Get.snackbar(
-        "Validation Error", 
+        "Validation Error",
         "Please select a product from the search results",
         backgroundColor: Colors.red.shade100,
         colorText: Colors.red.shade900,
@@ -72,25 +70,28 @@ class _CreateTaskState extends State<CreateTask> {
     }
 
     setState(() {
-      isLoading = true; 
+      isLoading = true;
     });
 
     final String apiUrl = "$baseUrl/api/tasks/create-task";
 
-    final String inspectorName = userSearchBarController.searchController.text.trim();
-    final String inspectorEmail = userSearchBarController.selectedInspectorEmail.value.trim(); 
+    final String inspectorName =
+        userSearchBarController.searchController.text.trim();
+    final String inspectorEmail =
+        userSearchBarController.selectedInspectorEmail.value.trim();
     final String product = searchBarController.searchController.text.trim();
     final String date = _dateController.text.trim();
     final String note = _noteController.text.trim();
 
-    final String selectedPartNumber = searchBarController.selectedPartNumber.value.trim();
+    final String selectedPartNumber =
+        searchBarController.selectedPartNumber.value.trim();
 
     try {
       String? token = await loginController.getToken();
-      
+
       if (token == null || token.isEmpty) {
         Get.snackbar(
-          "Authentication Error", 
+          "Authentication Error",
           "Please login again to continue",
           backgroundColor: Colors.red.shade100,
           colorText: Colors.red.shade900,
@@ -101,7 +102,7 @@ class _CreateTaskState extends State<CreateTask> {
       // Parse maintenance frequency safely
       int? maintenanceFreq;
       bool isRecurring = false;
-      
+
       if (_freqController.text.isNotEmpty) {
         try {
           maintenanceFreq = int.parse(_freqController.text);
@@ -112,7 +113,7 @@ class _CreateTaskState extends State<CreateTask> {
           }
         } catch (e) {
           Get.snackbar(
-            "Validation Error", 
+            "Validation Error",
             "Please enter a valid number for frequency",
             backgroundColor: Colors.red.shade100,
             colorText: Colors.red.shade900,
@@ -151,9 +152,9 @@ class _CreateTaskState extends State<CreateTask> {
 
       if (response.statusCode == 201) {
         final responseData = jsonDecode(response.body);
-        
+
         Get.snackbar(
-          "Success", 
+          "Success",
           "Task created successfully! Task ID: ${responseData['taskId'] ?? 'N/A'}",
           backgroundColor: Colors.green.shade100,
           colorText: Colors.green.shade900,
@@ -165,7 +166,8 @@ class _CreateTaskState extends State<CreateTask> {
             },
             child: Text(
               "View Tasks",
-              style: TextStyle(color: Colors.green.shade900, fontWeight: FontWeight.bold),
+              style: TextStyle(
+                  color: Colors.green.shade900, fontWeight: FontWeight.bold),
             ),
           ),
         );
@@ -176,18 +178,20 @@ class _CreateTaskState extends State<CreateTask> {
         try {
           final errorData = jsonDecode(response.body);
           String errorMessage = errorData['message'] ?? 'Failed to create task';
-          
+
           // Show detailed error information for debugging
           if (errorData['missingFields'] != null) {
-            errorMessage += '\nMissing: ${errorData['missingFields'].join(', ')}';
+            errorMessage +=
+                '\nMissing: ${errorData['missingFields'].join(', ')}';
           }
-          
+
           if (errorData['availableUsers'] != null) {
-            errorMessage += '\nAvailable users: ${errorData['availableUsers'].length}';
+            errorMessage +=
+                '\nAvailable users: ${errorData['availableUsers'].length}';
           }
-          
+
           Get.snackbar(
-            "Task Creation Failed", 
+            "Task Creation Failed",
             errorMessage,
             backgroundColor: Colors.red.shade100,
             colorText: Colors.red.shade900,
@@ -199,13 +203,14 @@ class _CreateTaskState extends State<CreateTask> {
               },
               child: Text(
                 "Debug Info",
-                style: TextStyle(color: Colors.red.shade900, fontWeight: FontWeight.bold),
+                style: TextStyle(
+                    color: Colors.red.shade900, fontWeight: FontWeight.bold),
               ),
             ),
           );
         } catch (e) {
           Get.snackbar(
-            "Error", 
+            "Error",
             "Server error: ${response.statusCode}",
             backgroundColor: Colors.red.shade100,
             colorText: Colors.red.shade900,
@@ -216,7 +221,7 @@ class _CreateTaskState extends State<CreateTask> {
     } catch (error) {
       print('Submit task error: $error');
       Get.snackbar(
-        "Network Error", 
+        "Network Error",
         "Failed to connect to server. Please check your connection and try again.",
         backgroundColor: Colors.red.shade100,
         colorText: Colors.red.shade900,
@@ -224,7 +229,7 @@ class _CreateTaskState extends State<CreateTask> {
       );
     } finally {
       setState(() {
-        isLoading = false; 
+        isLoading = false;
       });
     }
   }
@@ -238,7 +243,7 @@ class _CreateTaskState extends State<CreateTask> {
     searchBarController.searchController.clear();
     searchBarController.selectedPartNumber.value = '';
     searchBarController.selectedPartName.value = '';
-    
+
     // Reset toggle buttons to default
     setState(() {
       _isCriticalPart[0] = true;
@@ -283,10 +288,13 @@ class _CreateTaskState extends State<CreateTask> {
                 style: TextStyle(fontWeight: FontWeight.bold),
               ),
               const SizedBox(height: 8),
-              Text('Inspector: ${userSearchBarController.searchController.text}'),
-              Text('Email: ${userSearchBarController.selectedInspectorEmail.value}'),
+              Text(
+                  'Inspector: ${userSearchBarController.searchController.text}'),
+              Text(
+                  'Email: ${userSearchBarController.selectedInspectorEmail.value}'),
               Text('Product: ${searchBarController.searchController.text}'),
-              Text('Part Number: ${searchBarController.selectedPartNumber.value}'),
+              Text(
+                  'Part Number: ${searchBarController.selectedPartNumber.value}'),
               Text('Date: ${_dateController.text}'),
               Text('Note: ${_noteController.text}'),
               Text('Critical: ${_isCriticalPart[1]}'),
@@ -495,7 +503,7 @@ class _CreateTaskState extends State<CreateTask> {
                         padding: EdgeInsets.symmetric(horizontal: 12),
                         child: Row(
                           children: [
-                            Text("Normal Part"),
+                            Text("Normal Equipment"),
                             SizedBox(width: 8),
                             Icon(
                               size: 18,
@@ -508,7 +516,7 @@ class _CreateTaskState extends State<CreateTask> {
                         padding: EdgeInsets.symmetric(horizontal: 12),
                         child: Row(
                           children: [
-                            Text("Critical Part"),
+                            Text("Critical Equipment"),
                             SizedBox(width: 8),
                             Icon(
                               size: 18,
@@ -545,7 +553,8 @@ class _CreateTaskState extends State<CreateTask> {
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(100),
                             ),
-                            suffixIcon: const Icon(Icons.data_exploration_rounded),
+                            suffixIcon:
+                                const Icon(Icons.data_exploration_rounded),
                           ),
                         ),
                       ),

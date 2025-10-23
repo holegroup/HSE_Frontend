@@ -6,6 +6,7 @@ import 'package:hole_hse_inspection/config/env.dart';
 import 'package:hole_hse_inspection/controllers/login_controller.dart';
 import 'package:hole_hse_inspection/widgets/drawer_button.dart';
 import 'package:hole_hse_inspection/widgets/footer.dart';
+import 'package:hole_hse_inspection/widgets/admin_scaffold.dart';
 import 'package:http/http.dart' as http;
 
 class Profile extends StatefulWidget {
@@ -92,16 +93,8 @@ class _ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            Get.back();
-          },
-          icon: const Icon(Icons.arrow_back_ios_new_rounded),
-        ),
-        title: const Text("Profile"),
-      ),
+    return AdminScaffold(
+      title: 'Profile',
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: FutureBuilder<Map<String, dynamic>>(
@@ -206,7 +199,8 @@ class _ProfileState extends State<Profile> {
                                         const SizedBox(height: 8),
                                         Text(
                                           alertText,
-                                          style: const TextStyle(color: Colors.red),
+                                          style: const TextStyle(
+                                              color: Colors.red),
                                         ),
                                       ],
                                     ),
@@ -261,6 +255,8 @@ class _ProfileState extends State<Profile> {
                         );
                       },
                     ),
+                    const SizedBox(height: 20),
+                    const AppFooter(),
                   ],
                 ),
               );
@@ -268,11 +264,6 @@ class _ProfileState extends State<Profile> {
           },
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: SizedBox(
-          height: 120,
-          width: MediaQuery.sizeOf(context).width - 20,
-          child: const AppFooter()),
     );
   }
 }

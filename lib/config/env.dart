@@ -5,7 +5,7 @@ import 'app_config.dart';
 class Constants {
   // Environment configuration - CHANGE THIS TO SWITCH BETWEEN LOCAL AND LIVE
   static const bool useProductionServer =
-      false; // Set to false for local development
+      true; // Set to true for production/mobile app
 
   // Production server URL - Your live backend
   static const String productionUrl = "https://hsebackend.myhsebuddy.com";
@@ -36,8 +36,8 @@ class Constants {
   }
 
   // Fallback URLs for backup servers (in order of preference)
-  static const String fallbackUrl = "";
-  static const String secondaryFallbackUrl = "";
+  static const String fallbackUrl = "https://hsebackend.myhsebuddy.com";
+  static const String secondaryFallbackUrl = "https://hsebackend.myhsebuddy.com";
 
   // Alternative: Use AppConfig for more advanced configuration
   static String get advancedBaseUrl => AppConfig.baseUrl;
