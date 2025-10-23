@@ -46,25 +46,42 @@ class _ViewSitesState extends State<ViewSites> {
 
   @override
   Widget build(BuildContext context) {
-    return AdminScaffold(
-      title: 'Site Data',
-      actions: [
-        TextButton(
-          onPressed: () {
-            siteController.addNewSite();
-          },
-          child: userRole == 'supervisor'
-              ? const Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text("Add Site"),
-                    SizedBox(width: 4),
-                    Icon(Icons.add),
-                  ],
-                )
-              : const SizedBox(),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          'Site Data',
+          style: TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
         ),
-      ],
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 0,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              siteController.addNewSite();
+            },
+            child: userRole == 'supervisor'
+                ? const Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text("Add Site"),
+                      SizedBox(width: 4),
+                      Icon(Icons.add),
+                    ],
+                  )
+                : const SizedBox(),
+          ),
+        ],
+      ),
       body: Obx(() {
         if (siteController.isloadingSite.value) {
           return const Center(

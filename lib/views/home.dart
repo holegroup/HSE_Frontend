@@ -7,9 +7,10 @@ import 'package:hole_hse_inspection/controllers/search_controller.dart';
 import 'package:hole_hse_inspection/controllers/task_controller.dart';
 import 'package:hole_hse_inspection/views/all_tasks.dart';
 import 'package:hole_hse_inspection/views/draft_report.dart';
-// imports removed: profile, view_sites, drawer_button (no longer needed; AdminScaffold provides navigation)
+import 'package:hole_hse_inspection/views/profile.dart';
+import 'package:hole_hse_inspection/views/view_sites.dart';
+import 'package:hole_hse_inspection/widgets/drawer_button.dart';
 import 'package:hole_hse_inspection/widgets/footer.dart';
-import 'package:hole_hse_inspection/widgets/unified_scaffold.dart';
 import 'package:hole_hse_inspection/widgets/search.dart';
 import 'package:hole_hse_inspection/widgets/todo_calender.dart';
 import '../controllers/draft_controller.dart';
@@ -43,8 +44,94 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return UnifiedScaffold(
-      title: 'Inspector Dashboard',
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text(
+          "Inspector Dashboard",
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+        ),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 0,
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              icon: const Icon(Icons.menu),
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
+          },
+        ),
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.white,
+        child: SafeArea(
+          child: LayoutBuilder(builder: (context, constraints) {
+            return SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                children: [
+                  const SizedBox(height: 50),
+                  // HSE BUDDY Logo
+                  Image.asset(
+                    'assets/images/icon.png',
+                    filterQuality: FilterQuality.low,
+                    width: constraints.maxWidth * 0.4,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        width: constraints.maxWidth * 0.4,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade200,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.business,
+                              size: 40,
+                              color: Colors.grey.shade600,
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              'HSE BUDDY',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey.shade600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 80),
+                  // Menu Items
+                  CustomDrawerButton(
+                    icon: Icons.settings,
+                    label: "Profile Settings",
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Get.to(() => const Profile());
+                    },
+                  ),
+                  CustomDrawerButton(
+                    icon: Icons.data_usage,
+                    label: "View site data",
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Get.to(() => const ViewSites());
+                    },
+                  ),
+                ],
+              ),
+            );
+          }),
+        ),
+      ),
       body: SafeArea(
         child: RefreshIndicator(
           onRefresh: _refreshData,

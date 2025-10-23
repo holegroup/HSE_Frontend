@@ -6,7 +6,12 @@ import 'package:hole_hse_inspection/views/supervisor/ta_home.dart';
 import 'package:hole_hse_inspection/views/supervisor/ta_reports.dart';
 import 'package:hole_hse_inspection/views/supervisor/ta_tasks.dart';
 import 'package:hole_hse_inspection/views/supervisor/ta_team.dart';
-import 'package:hole_hse_inspection/widgets/unified_scaffold.dart';
+import 'package:hole_hse_inspection/config/env.dart';
+import 'package:hole_hse_inspection/views/supervisor/create_task.dart';
+import 'package:hole_hse_inspection/views/supervisor/recurringTasks.dart';
+import 'package:hole_hse_inspection/widgets/drawer_button.dart';
+import 'package:hole_hse_inspection/views/profile.dart';
+import 'package:hole_hse_inspection/views/view_sites.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:hole_hse_inspection/controllers/recurring_task_controller.dart';
@@ -26,27 +31,48 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
   RecurringTaskController recurringTaskController =
       Get.put(RecurringTaskController());
 
-  int _currentIndex = 0;
   String? userRole;
   String? userName;
   bool isLoading = true;
 
-  final List<Widget> _tabs = [
+  int _selectedPage = 0;
+  int _currentNavIndex = 0;
+
+  final List<Widget> _pages = [
+    const TaHome(),
+    const RecurringTasks(),
+    const CreateTask(),
+    const TaReports(),
+    const TaTasks(),
+    const TaTeam(),
+  ];
+
+  final List<String> _pageNames = [
+    'Dashboard',
+    'Recurring Tasks',
+    'Create Task',
+    'Reports',
+    'Task Management',
+    'Team Management',
+  ];
+
+  // Bottom navigation pages
+  final List<Widget> _navPages = [
     const TaHome(),
     const RecurringTasks(),
     const CreateTask(),
   ];
 
-  final List<IconData> _tabIcons = [
-    Icons.dashboard_rounded,
-    Icons.insert_chart,
-    Icons.create_new_folder_rounded,
-  ];
-
-  final List<String> _tabLabels = [
+  final List<String> _navTitles = [
     'Home',
     'See Tasks',
     'Create Task',
+  ];
+
+  final List<IconData> _navIcons = [
+    Icons.home,
+    Icons.task_alt,
+    Icons.add_task,
   ];
 
   @override
@@ -236,50 +262,213 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
       );
     }
 
-    return UnifiedScaffold(
-      title: 'Supervisor Dashboard',
-      actions: [
-        Container(
-          margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
-          decoration: BoxDecoration(
-            color: ColorPalette.primaryColor.withOpacity(0.1),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(
-              color: ColorPalette.primaryColor,
-              width: 1,
-            ),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          _navTitles[_currentNavIndex],
+          style: const TextStyle(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
           ),
-          child: const Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Icon(
-                Icons.verified_user,
-                size: 16,
-                color: ColorPalette.primaryColor,
-              ),
-              SizedBox(width: 4),
-              Text(
-                'Supervisor',
-                style: TextStyle(
-                  fontSize: 12,
-                  fontWeight: FontWeight.bold,
+        ),
+        backgroundColor: Colors.white,
+        foregroundColor: Colors.black,
+        elevation: 0,
+        automaticallyImplyLeading: false,
+        actions: [
+          GestureDetector(
+            onTap: () {
+              Scaffold.of(context).openDrawer();
+            },
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+              decoration: BoxDecoration(
+                color: ColorPalette.primaryColor.withOpacity(0.1),
+                borderRadius: BorderRadius.circular(20),
+                border: Border.all(
                   color: ColorPalette.primaryColor,
+                  width: 1,
                 ),
               ),
-            ],
+              child: const Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Icon(
+                    Icons.verified_user,
+                    size: 16,
+                    color: ColorPalette.primaryColor,
+                  ),
+                  SizedBox(width: 4),
+                  Text(
+                    'Supervisor',
+                    style: TextStyle(
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: ColorPalette.primaryColor,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ),
-        ),
-        IconButton(
-          onPressed: _testApiConnection,
-          icon: const Icon(
-            Icons.wifi_tethering,
-            color: ColorPalette.primaryColor,
+          IconButton(
+            onPressed: _testApiConnection,
+            icon: const Icon(
+              Icons.wifi_tethering,
+              color: ColorPalette.primaryColor,
+            ),
+            tooltip: 'Test API Connection',
           ),
-          tooltip: 'Test API Connection',
+        ],
+      ),
+      drawer: Drawer(
+        backgroundColor: Colors.white,
+        child: SafeArea(
+          child: LayoutBuilder(builder: (context, constraints) {
+            return SingleChildScrollView(
+              scrollDirection: Axis.vertical,
+              child: Column(
+                children: [
+                  const SizedBox(height: 50),
+                  // HSE BUDDY Logo
+                  Image.asset(
+                    'assets/images/icon.png',
+                    filterQuality: FilterQuality.low,
+                    width: constraints.maxWidth * 0.4,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        width: constraints.maxWidth * 0.4,
+                        height: 150,
+                        decoration: BoxDecoration(
+                          color: Colors.grey.shade200,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.business,
+                              size: 40,
+                              color: Colors.grey.shade600,
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              'HSE BUDDY',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.grey.shade600,
+                              ),
+                            ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(height: 80),
+                  // Menu Items
+                  CustomDrawerButton(
+                    icon: Icons.dashboard_rounded,
+                    label: "Dashboard",
+                    onPressed: () {
+                      setState(() {
+                        _selectedPage = 0;
+                      });
+                      Navigator.pop(context);
+                    },
+                  ),
+                  CustomDrawerButton(
+                    icon: Icons.repeat,
+                    label: "Recurring Tasks",
+                    onPressed: () {
+                      setState(() {
+                        _selectedPage = 1;
+                      });
+                      Navigator.pop(context);
+                    },
+                  ),
+                  CustomDrawerButton(
+                    icon: Icons.create_new_folder_rounded,
+                    label: "Create Task",
+                    onPressed: () {
+                      setState(() {
+                        _selectedPage = 2;
+                      });
+                      Navigator.pop(context);
+                    },
+                  ),
+                  CustomDrawerButton(
+                    icon: Icons.description,
+                    label: "Reports",
+                    onPressed: () {
+                      setState(() {
+                        _selectedPage = 3;
+                      });
+                      Navigator.pop(context);
+                    },
+                  ),
+                  CustomDrawerButton(
+                    icon: Icons.task_alt,
+                    label: "Task Management",
+                    onPressed: () {
+                      setState(() {
+                        _selectedPage = 4;
+                      });
+                      Navigator.pop(context);
+                    },
+                  ),
+                  CustomDrawerButton(
+                    icon: Icons.people,
+                    label: "Team Management",
+                    onPressed: () {
+                      setState(() {
+                        _selectedPage = 5;
+                      });
+                      Navigator.pop(context);
+                    },
+                  ),
+                  const SizedBox(height: 20),
+                  // Divider
+                  Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
+                    height: 1,
+                    color: Colors.grey.shade300,
+                  ),
+                  const SizedBox(height: 20),
+                  // Additional Options
+                  CustomDrawerButton(
+                    icon: Icons.settings,
+                    label: "Profile Settings",
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Get.to(() => const Profile());
+                    },
+                  ),
+                  CustomDrawerButton(
+                    icon: Icons.data_usage,
+                    label: "View Site Data",
+                    onPressed: () {
+                      Navigator.pop(context);
+                      Get.to(() => const ViewSites());
+                    },
+                  ),
+                  CustomDrawerButton(
+                    icon: Icons.logout,
+                    label: "Logout",
+                    backgroundColor: Colors.red.shade600,
+                    onPressed: () {
+                      Navigator.pop(context);
+                      _logout();
+                    },
+                  ),
+                ],
+              ),
+            );
+          }),
         ),
-      ],
-      body: _tabs[_currentIndex],
+      ),
+      body: _navPages[_currentNavIndex],
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           boxShadow: [
@@ -293,8 +482,8 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
         ),
         child: BottomNavigationBar(
           selectedItemColor: ColorPalette.primaryColor,
-          unselectedItemColor: ColorPalette.light2,
-          currentIndex: _currentIndex,
+          unselectedItemColor: Colors.grey,
+          currentIndex: _currentNavIndex,
           type: BottomNavigationBarType.fixed,
           backgroundColor: Colors.white,
           elevation: 0,
@@ -307,25 +496,25 @@ class _SupervisorDashboardState extends State<SupervisorDashboard> {
           ),
           onTap: (index) {
             setState(() {
-              _currentIndex = index;
+              _currentNavIndex = index;
             });
           },
-          items: List.generate(_tabs.length, (index) {
+          items: List.generate(_navPages.length, (index) {
             return BottomNavigationBarItem(
               icon: Container(
                 padding: const EdgeInsets.all(8),
                 decoration: BoxDecoration(
-                  color: _currentIndex == index
+                  color: _currentNavIndex == index
                       ? ColorPalette.primaryColor.withOpacity(0.1)
                       : Colors.transparent,
                   borderRadius: BorderRadius.circular(12),
                 ),
                 child: Icon(
-                  _tabIcons[index],
-                  size: _currentIndex == index ? 26 : 24,
+                  _navIcons[index],
+                  size: _currentNavIndex == index ? 26 : 24,
                 ),
               ),
-              label: _tabLabels[index],
+              label: _navTitles[index],
             );
           }),
         ),
