@@ -23,6 +23,7 @@ import 'package:hole_hse_inspection/views/login.dart';
 import 'package:hole_hse_inspection/views/signup.dart';
 import 'package:hole_hse_inspection/views/forgot_password.dart';
 import 'package:hole_hse_inspection/views/api_test_page.dart';
+import 'package:hole_hse_inspection/config/env.dart';
 import 'package:path_provider/path_provider.dart';
 // Conditionally import web plugins
 import 'package:flutter/foundation.dart' show kIsWeb;
@@ -30,6 +31,9 @@ import 'web_plugins.dart' if (dart.library.html) 'web_plugins_web.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // Debug: Print current configuration
+  Constants.printCurrentConfig();
 
   // Initialize platform-specific plugins immediately for web
   if (kIsWeb) {

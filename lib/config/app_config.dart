@@ -1,18 +1,32 @@
 import 'dart:io' show Platform;
-import 'package:flutter/foundation.dart' show kIsWeb, kDebugMode;
+import 'package:flutter/foundation.dart' show kIsWeb, kDebugMode, kReleaseMode;
 
 enum Environment { development, staging, production }
 
 class AppConfig {
-  static Environment _environment =
-      Environment.production; // Change this to switch environments
+  // Automatically detect environment based on build mode
+  static Environment get environment {
+    // Force production for release builds (APK)
+    if (kReleaseMode) {
+      return Environment.production;
+    }
+    // Use development only in debug mode
+    else if (kDebugMode) {
+      return Environment.development;
+    }
+    // Default to production for safety
+    else {
+      return Environment.production;
+    }
+  }
 
-  // Get current environment
-  static Environment get environment => _environment;
+  // Manual override for testing (optional)
+  static Environment? _manualEnvironment;
+  static Environment get currentEnvironment => _manualEnvironment ?? environment;
 
   // Set environment (useful for testing)
   static void setEnvironment(Environment env) {
-    _environment = env;
+    _manualEnvironment = env;
   }
 
   // Environment-specific configurations
@@ -53,7 +67,7 @@ class AppConfig {
 
   // Get configuration value
   static T getValue<T>(String key) {
-    return _configs[_environment]![key] as T;
+    return _configs[currentEnvironment]![key] as T;
   }
 
   // Getters for common configurations
@@ -78,9 +92,9 @@ class AppConfig {
   static const String sseEndpoint = "/api/sse";
 
   // Helper methods
-  static bool get isProduction => _environment == Environment.production;
-  static bool get isDevelopment => _environment == Environment.development;
-  static bool get isStaging => _environment == Environment.staging;
+  static bool get isProduction => currentEnvironment == Environment.production;
+  static bool get isDevelopment => currentEnvironment == Environment.development;
+  static bool get isStaging => currentEnvironment == Environment.staging;
 
   // Get full endpoint URL
   static String getEndpointUrl(String endpoint) {
@@ -89,10 +103,10 @@ class AppConfig {
 
   // Debug info
   static Map<String, dynamic> get debugInfo => {
-        'environment': _environment.toString(),
+        'environment': currentEnvironment.toString(),
         'baseUrl': baseUrl,
         'platform': kIsWeb ? 'Web' : Platform.operatingSystem,
         'isDebugMode': kDebugMode,
-        'config': _configs[_environment],
+        'config': _configs[currentEnvironment],
       };
 }
